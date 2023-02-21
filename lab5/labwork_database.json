@@ -1,0 +1,19 @@
+[    
+  {
+    "id": 1,
+    "name": "lab5",
+    "coordinates": {
+      "x": 20.0,
+      "y": 30
+    },
+    "creationDate": "2023-02-21",
+    "minimalPoint": 6,
+    "personalQualitiesMinimum": 8,
+    "averagePoint": 7,
+    "difficulty": "TERRIBLE",
+    "discipline": {
+      "name": "Programming",
+      "lectureHours": "16"
+    }
+  }
+]
