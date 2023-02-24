@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fb6f345-f8b6-4279-be10-2dccf40ab7e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/command/commands/ExitCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labwork_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/labwork_database.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collection/LabWorkCollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/LabWorkCollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/core/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/CommandWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/CommandWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/Commandable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/core/Commandable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/ConsoleInputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/ConsoleInputManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/InputManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/InputManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/InputManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json/CollectionDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/CollectionDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json/DateDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/DateDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json/DateSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/DateSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json/LocalDateDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/LocalDateDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +76,7 @@
       <workItem from="1676550049896" duration="27045000" />
       <workItem from="1676986421582" duration="9058000" />
       <workItem from="1677172057840" duration="26810000" />
-      <workItem from="1677263582556" duration="6486000" />
+      <workItem from="1677263582556" duration="6927000" />
     </task>
     <servers />
   </component>
