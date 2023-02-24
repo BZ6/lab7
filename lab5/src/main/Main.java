@@ -1,6 +1,7 @@
 package main;
 
 import collection.LabWorkCollectionManager;
+import command.CommandManager;
 import data.*;
 import file.FileManager;
 import io.*;
@@ -10,7 +11,6 @@ import collection.CollectionManager;
 
 import static io.OutputManager.*;
 
-import commands.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {

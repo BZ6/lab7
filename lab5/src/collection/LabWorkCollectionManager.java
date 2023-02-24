@@ -19,8 +19,10 @@ import com.google.gson.reflect.TypeToken;
  */
 public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     private Stack<LabWork> collection;
-    private java.time.LocalDateTime initDate;
-    private HashSet<Integer> uniqueIds;
+    private final java.time.LocalDateTime initDate;
+    private final HashSet<Integer> uniqueIds;
+    private static final Integer THE_FIRST_ID = 1;
+
     /**
      * Constructor, set start values
      */
@@ -31,12 +33,13 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
         initDate = java.time.LocalDateTime.now();
     }
 
-    public int generateNextId(){
+    public Integer generateNextId(){
+
         if (collection.isEmpty())
-            return 1;
+            return THE_FIRST_ID;
         else {
-            Integer id = collection.peek().getId() + 1;
-            if(uniqueIds.contains(id)){
+            Integer id = collection.peek().getId()==Integer.MAX_VALUE ? THE_FIRST_ID : collection.peek().getId() + 1;
+            if (uniqueIds.contains(id)){
                 while (uniqueIds.contains(id)) id+=1;
             }
             uniqueIds.add(id);
@@ -109,15 +112,15 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
      * @param id ID
      */
     public void updateByID(Integer id, LabWork newLabWork){
-        int idx = 0;
+        int currentId = THE_FIRST_ID;
         for (LabWork labWork : collection){
             if (labWork.getId() == id){
                 newLabWork.setId(id);
-                collection.set(idx, newLabWork);
+                collection.set(currentId, newLabWork);
                 print("element #"+Integer.toString(id)+" successfully updated");
                 return;
             }
-            idx += 1;
+            currentId += 1;
         }
     }
 

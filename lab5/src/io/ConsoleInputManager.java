@@ -1,14 +1,11 @@
 package io;
 
+import data.Coordinates;
+import data.Difficulty;
+import data.Discipline;
+import data.LabWork;
+
 import java.util.Scanner;
-
-import java.time.LocalDate;
-
-import data.*;
-import exceptions.InvalidEnumException;
-import exceptions.InvalidNumberException;
-
-import static io.OutputManager.*;
 public class ConsoleInputManager extends InputManagerImpl{
 
     public ConsoleInputManager(){

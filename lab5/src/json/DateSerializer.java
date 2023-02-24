@@ -9,7 +9,7 @@ import utils.DateConverter;
  */
 public class DateSerializer implements JsonSerializer<Date>{
     @Override
-    public JsonElement serialize(Date Date, Type srcType, JsonSerializationContext context) {
-        return new JsonPrimitive(DateConverter.dateToString(Date));
+    public JsonElement serialize(final Date date, Type srcType, JsonSerializationContext context) {
+        return new JsonPrimitive(DateConverter.dateToString(date));
     }
 }

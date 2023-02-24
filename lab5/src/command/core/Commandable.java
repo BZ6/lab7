@@ -1,12 +1,6 @@
-package commands;
+package command.core;
 
 public interface Commandable {
-    /**
-     * adds command
-     * @param key command name
-     * @param cmd command callback
-     */
-    public void addCommand(String key, Command cmd);
 
     /**
      * executes command with argument
@@ -20,8 +14,6 @@ public interface Commandable {
      * @param key
      */
     public void runCommand(String key);
-
-    public boolean hasCommand(String s);
 
     /**
      * runs in command interpreter in console

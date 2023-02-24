@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3fb6f345-f8b6-4279-be10-2dccf40ab7e8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/command/commands/ExitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labwork_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/labwork_database.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/CollectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collection/LabWorkCollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/LabWorkCollectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/core/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/CommandWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/CommandWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/Commandable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/core/Commandable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/ConsoleInputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/ConsoleInputManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/InputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/InputManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/InputManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/InputManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/CollectionDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/CollectionDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/DateDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/DateDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/DateSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/DateSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/LocalDateDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/LocalDateDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Lov3CUwhVFywFsxc3pIny57Y7I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bogda/Downloads/Statistic-4.2.7.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="lab5" />
+      <option name="PROGRAM_PARAMETERS" value="labwork_database.json" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3fb6f345-f8b6-4279-be10-2dccf40ab7e8" name="Changes" comment="" />
+      <created>1676550048752</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676550048752</updated>
+      <workItem from="1676550049896" duration="27045000" />
+      <workItem from="1676986421582" duration="9058000" />
+      <workItem from="1677172057840" duration="26810000" />
+      <workItem from="1677263582556" duration="6486000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lab5$Main.ic" NAME="Main Coverage Results" MODIFIED="1676716243445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.*</FILTER>
+    </SUITE>
+  </component>
+</project>

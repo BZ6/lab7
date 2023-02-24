@@ -8,9 +8,9 @@ import exceptions.*;
  * @param <T>
  */
 public class Question<T>{
-    private Askable<T> askable;
+    private final Askable<T> askable;
     private T answer;
-    public Question(String msg,Askable<T> askable){
+    public Question(String msg, Askable<T> askable){
         this.askable = askable;
         while (true){
             try{

@@ -1,4 +1,4 @@
-package commands;
+package command;
 
 /**
  * command wrapper class for command parsing

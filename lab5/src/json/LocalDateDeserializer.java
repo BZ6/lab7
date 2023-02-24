@@ -16,7 +16,7 @@ public class LocalDateDeserializer implements JsonDeserializer<LocalDate> {
             return DateConverter.parseLocalDate(json.getAsJsonPrimitive().getAsString());
         }
         catch (InvalidDateFormatException e){
-            throw new JsonParseException("");
+            throw new JsonParseException("invalid date format");
         }
     }
 }

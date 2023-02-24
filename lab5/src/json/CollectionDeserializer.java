@@ -42,7 +42,7 @@ public class CollectionDeserializer implements JsonDeserializer<Stack<LabWork>>{
                 Integer id = labWork.getId();
 
                 if(uniqueIds.contains(id)) {
-                    printErr("database already contains LabWork with id #" + Integer.toString(id));
+                    printErr("data already contains LabWork with id #" + Integer.toString(id));
                     throw new JsonParseException("id isnt unique");
                 }
                 if(!labWork.validate()) {
@@ -56,11 +56,11 @@ public class CollectionDeserializer implements JsonDeserializer<Stack<LabWork>>{
             }
         }
         if(collection.size()==0){
-            if(damagedElements == 0) printErr("database is empty");
+            if(damagedElements == 0) printErr("data is empty");
             else  printErr("all elements in database are damaged");
             throw new JsonParseException("no data");
         }
-        if (damagedElements != 0) printErr(Integer.toString(damagedElements) + " elements in database are damaged");
+        if (damagedElements != 0) printErr(Integer.toString(damagedElements) + " elements in data are damaged");
         return collection;
     }
 }

@@ -12,7 +12,7 @@ public interface CollectionManager<T> {
      * generates new unique ID for collection
      * @return
      */
-    public int generateNextId();
+    public Integer generateNextId();
 
     public void sort();
 

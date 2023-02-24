@@ -16,7 +16,7 @@ public class DateDeserializer implements JsonDeserializer<Date> {
             return DateConverter.parseDate(json.getAsJsonPrimitive().getAsString());
         }
         catch (InvalidDateFormatException e){
-            throw new JsonParseException("");
+            throw new JsonParseException("invalid date format");
         }
     }
 }
