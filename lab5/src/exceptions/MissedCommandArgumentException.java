@@ -1,9 +1,10 @@
 package exceptions;
 /**
- * thrown  when user doesn't enter required command argument
+ * thrown  when user does not enter required command argument
  */
 public class MissedCommandArgumentException extends InvalidCommandArgumentException{
+    private static final String message = "missed command argument";
     public MissedCommandArgumentException(){
-        super("missed command argument");
+        super(message);
     }
 }

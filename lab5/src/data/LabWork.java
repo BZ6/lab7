@@ -1,9 +1,9 @@
 package data;
 
+import exceptions.InvalidFieldException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * LabWork class
@@ -29,9 +29,11 @@ public class LabWork implements Collectionable{
      * @param difficulty
      * @param discipline
      */
-    public LabWork(String name, Coordinates coordinates, Integer minimalPoint, int personalQualitiesMinimum, Double averagePoint, Difficulty difficulty, Discipline discipline){
+    public LabWork(String name, Coordinates coordinates, Integer minimalPoint, int personalQualitiesMinimum, Double averagePoint, Difficulty difficulty, Discipline discipline) throws InvalidFieldException {
+        if (!validate()){
+            throw new InvalidFieldException();
+        }
         creationDate = new java.util.Date();
-
         this.name = name;
         this.coordinates = coordinates;
         this.minimalPoint = minimalPoint;
@@ -51,11 +53,11 @@ public class LabWork implements Collectionable{
 
 
     /**
-     * sets ID, usefull for replacing elements in collection
-     * @param ID
+     * sets id, usefull for replacing elements in collection
+     * @param id
      */
-    public void setId(int ID){
-        id = ID;
+    public void setId(int id){
+        this.id = id;
     }
 
 
@@ -105,17 +107,16 @@ public class LabWork implements Collectionable{
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strCreationDate = dateFormat.format(creationDate);
         String s = "";
-
         s += "{\n";
-        s += "  \"id\" : " + Integer.toString(id) + ",\n";
-        s += "  \"name\" : " + "\"" + name + "\"" + ",\n";
-        s += "  \"coordinates\" : " + coordinates.toString() + ",\n";
-        s += "  \"creationDate\" : " + "\"" + strCreationDate + "\"" + ",\n";
-        s += "  \"minimalPoint\" : " + Integer.toString(minimalPoint) + ",\n";
-        s += "  \"personalQualitiesMinimum\" : " + Integer.toString(personalQualitiesMinimum) + ",\n";
-        s += "  \"averagePoint\" : " + Double.toString(averagePoint) + ",\n";
-        s += "  \"difficulty\" : " + "\"" + difficulty.toString() + "\"" + ",\n";
-        s += "  \"discipline\" : " + discipline.toString() + "\n";
+        s += String.format("  \"id\" : %s,\n", Integer.toString(id));
+        s += String.format("  \"name\" : %s,\n", name);
+        s += String.format("  \"coordinates\" : %s,\n", coordinates.toString());
+        s += String.format("  \"creationDate\" : %s,\n", strCreationDate);
+        s += String.format("  \"minimalPoint\" : %s,\n", Integer.toString(minimalPoint));
+        s += String.format("  \"personalQualitiesMinimum\" : %s,\n", Integer.toString(personalQualitiesMinimum));
+        s += String.format("  \"averagePoint\" : %s,\n", Double.toString(averagePoint));
+        s += String.format("  \"difficulty\" : %s,\n", difficulty.toString());
+        s += String.format("  \"discipline\" : %s\n", discipline.toString());
         s += "}";
         return s;
     }

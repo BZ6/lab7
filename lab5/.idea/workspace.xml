@@ -5,7 +5,63 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fb6f345-f8b6-4279-be10-2dccf40ab7e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/collection/CollectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/collection/CollectionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/collection/LabWorkCollectionManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/collection/LabWorkCollectionManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/collection/LabWorkCollectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/collection/LabWorkCollectionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/command/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/command/CommandManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/command/commands/RemoveByIdCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/command/commands/RemoveByIdCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/command/commands/UpdateCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/command/commands/UpdateCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/data/Coordinates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/data/Coordinates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/data/Discipline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/data/Discipline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/data/LabWork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/data/LabWork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/CannotCreateFileException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/CannotCreateFileException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/EmptyCollectionException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/EmptyCollectionException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/EmptyPathException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/EmptyPathException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/EmptyStringException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/EmptyStringException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/FileNotExistsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/FileNotExistsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidCommandArgumentException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidCommandArgumentException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidDateFormatException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidDateFormatException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidEnumException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidEnumException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidNumberException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/InvalidNumberException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/MissedCommandArgumentException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/MissedCommandArgumentException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/NoSuchCommandException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/NoSuchCommandException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/exceptions/RecursiveScriptExecuteException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/exceptions/RecursiveScriptExecuteException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/file/FileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/file/FileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/io/ConsoleInputManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/io/ConsoleInputManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/io/InputManagerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/io/InputManagerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/json/CollectionDeserializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/json/CollectionDeserializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collection/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/CollectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collection/LabWorkCollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collection/LabWorkCollectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/command/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/command/CommandWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/CommandWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/command/commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/command/commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/commands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/command/core/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/command/core/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Difficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Discipline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Discipline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/LabWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/LabWork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/Validateable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/CannotCreateFileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/CannotCreateFileException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/EmptyCollectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/EmptyCollectionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/EmptyPathException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/EmptyPathException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/EmptyStringException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/EmptyStringException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/FileNotExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/FileNotExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidCommandArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidCommandArgumentException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidDateFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidDateFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidEnumException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidEnumException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidNumberException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidNumberException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/MissedCommandArgumentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/MissedCommandArgumentException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/NoSuchCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/NoSuchCommandException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/RecursiveScriptExecuteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/RecursiveScriptExecuteException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/file/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/ConsoleInputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/ConsoleInputManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/InputManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/InputManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/CollectionDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/CollectionDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/LocalDateDeserializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/json/LocalDateSerializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/DateConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/DateConverter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +72,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -75,7 +133,12 @@
       <workItem from="1676550049896" duration="27045000" />
       <workItem from="1676986421582" duration="9058000" />
       <workItem from="1677172057840" duration="26810000" />
-      <workItem from="1677263582556" duration="8554000" />
+      <workItem from="1677263582556" duration="9703000" />
+      <workItem from="1678985950880" duration="54000" />
+      <workItem from="1678986955572" duration="4203000" />
+      <workItem from="1679142661121" duration="3931000" />
+      <workItem from="1679244339015" duration="13467000" />
+      <workItem from="1679264807866" duration="5000" />
     </task>
     <servers />
   </component>

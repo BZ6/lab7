@@ -5,10 +5,7 @@ import data.Coordinates;
 import data.Difficulty;
 import data.Discipline;
 import data.LabWork;
-import exceptions.EmptyStringException;
-import exceptions.InvalidDataException;
-import exceptions.InvalidEnumException;
-import exceptions.InvalidNumberException;
+import exceptions.*;
 
 import java.util.Scanner;
 
@@ -16,6 +13,9 @@ import java.util.Scanner;
  * basic implementation of InputManager
  */
 public abstract class InputManagerImpl implements InputManager{
+    private static final int TWICE = 2;
+    private static final int THE_FIRST_PART = 0;
+    private static final int THE_SECOND_PART = 1;
     private Scanner scanner;
 
     public InputManagerImpl(Scanner sc){
@@ -46,7 +46,6 @@ public abstract class InputManagerImpl implements InputManager{
         catch(NumberFormatException e){
             throw new InvalidNumberException();
         }
-        if (Double.isInfinite(x) || Double.isNaN(x)) throw new InvalidNumberException("invalid float value");
         return x;
     }
 
@@ -58,10 +57,9 @@ public abstract class InputManagerImpl implements InputManager{
         catch(NumberFormatException e){
             throw new InvalidNumberException();
         }
-        if (y<=-545) throw new InvalidNumberException("must be greater than -545");
         return y;
     }
-    public Coordinates readCoords() throws InvalidNumberException{
+    public Coordinates readCoords() throws InvalidNumberException {
         double x = readXCoord();
         Integer y = readYCoord();
         Coordinates coord = new Coordinates(x,y);
@@ -76,7 +74,6 @@ public abstract class InputManagerImpl implements InputManager{
         catch(NumberFormatException e){
             throw new InvalidNumberException();
         }
-        if (minimalPoint<=0) throw new InvalidNumberException("must be greater than 0");
         return minimalPoint;
     }
 
@@ -93,7 +90,6 @@ public abstract class InputManagerImpl implements InputManager{
         catch(NumberFormatException e){
             throw new InvalidNumberException();
         }
-        if (personalQualitiesMinimum<=0) throw new InvalidNumberException("must be greater than 0");
         return personalQualitiesMinimum;
     }
 
@@ -110,7 +106,6 @@ public abstract class InputManagerImpl implements InputManager{
         catch(NumberFormatException e){
             throw new InvalidNumberException();
         }
-        if (averagePoint<=0) throw new InvalidNumberException("must be greater than 0");
         return averagePoint;
     }
 
@@ -131,7 +126,6 @@ public abstract class InputManagerImpl implements InputManager{
         catch(NumberFormatException e){
             throw new InvalidNumberException();
         }
-        if (lectureHours<0) throw new InvalidNumberException("must be greater than 0(ahtung!)");
         return lectureHours;
     }
 
@@ -154,15 +148,14 @@ public abstract class InputManagerImpl implements InputManager{
         labWork = new LabWork(name, coords, minimalPoint, personalQualitiesMinimum, averagePoint, difficulty, discipline);
 
         return labWork;
-
     }
 
     public CommandWrapper readCommand(){
         String cmd = scanner.nextLine();
         if (cmd.contains(" ")){ //if command has argument
-            String arr [] = cmd.split(" ",2);
-            cmd = arr[0];
-            String arg = arr[1];
+            String commandLine [] = cmd.split(" ",TWICE);
+            cmd = commandLine[THE_FIRST_PART];
+            String arg = commandLine[THE_SECOND_PART];
             return new CommandWrapper(cmd,arg);
         } else {
             return new CommandWrapper(cmd);

@@ -38,7 +38,9 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
         if (collection.isEmpty())
             return THE_FIRST_ID;
         else {
-            Integer id = collection.peek().getId()==Integer.MAX_VALUE ? THE_FIRST_ID : collection.peek().getId() + 1;
+            Integer id = collection.peek().getId() == Integer.MAX_VALUE ?
+                    THE_FIRST_ID :
+                    collection.peek().getId() + 1;
             if (uniqueIds.contains(id)){
                 while (uniqueIds.contains(id)) id+=1;
             }
@@ -82,34 +84,35 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
 
     /**
      * Give info about is this ID used
-     * @param ID ID
+     * @param id
      * @return is it used or not
      */
-    public boolean checkID(Integer ID){
+    public boolean checkId(Integer id){
         for (LabWork labWork: collection)
-            if (labWork.getId() == ID)
+            if (labWork.getId() == id)
                 return true;
         return false;
     }
 
     /**
      * Delete element by ID
-     * @param id ID
+     * @param id
      */
     public void removeByID(Integer id){
-        for (LabWork labWork : collection){
-            if (labWork.getId() == id){
-                collection.remove(labWork);
-                uniqueIds.remove(id);
-                print("element #"+Integer.toString(id)+" successfully deleted");
-                return;
+        if (checkId(id))
+            for (LabWork labWork : collection){
+                if (labWork.getId() == id){
+                    collection.remove(labWork);
+                    uniqueIds.remove(id);
+                    print("element #"+Integer.toString(id)+" successfully deleted");
+                    return;
+                }
             }
-        }
     }
 
     /**
      * Delete element by ID
-     * @param id ID
+     * @param id
      */
     public void updateByID(Integer id, LabWork newLabWork){
         int currentId = THE_FIRST_ID;
@@ -139,12 +142,12 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     }
 
     /**
-     * Add if ID of element bigger then max in collection
+     * Add if ID of element bigger than max in collection
      * @param newLabWork Element
      */
     public void addIfMax(LabWork newLabWork){
         for (LabWork labWork : collection){
-            if (newLabWork.compareTo(labWork)==-1){
+            if (newLabWork.compareTo(labWork) < 0){
                 printErr("unable to add");
                 return;
             }
@@ -158,7 +161,7 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
      */
     public void removeLower(LabWork newLabWork){
         for (LabWork labWork : collection){
-            if (newLabWork.compareTo(labWork)==1){
+            if (newLabWork.compareTo(labWork) > 1){
                 collection.remove(labWork);
             }
         }
@@ -184,50 +187,44 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
 
     public void printStartsWithName(String start){
         LinkedList<LabWork> list = new LinkedList<>();
+        boolean isEmpty = true;
         for (LabWork labWork : collection){
             if (labWork.getName().startsWith(start.trim())){
-                list.add(labWork);
-            }
-        }
-        if (list.isEmpty()) print("none of elements have name which starts with " + start);
-        else{
-            print("starts with: " + start);
-            for (LabWork labWork: list){
+                isEmpty = false;
                 print(labWork.toString());
             }
         }
+        if (isEmpty) print("none of elements have name which starts with " + start);
     }
 
 
-    public boolean deserializeCollection(String json){
+    public boolean deserializeCollection(String jsonData){
         boolean success = true;
         try {
-            if (json == null || json.equals("")){
+            if (jsonData == null || jsonData.equals("")){
                 collection =  new Stack<LabWork>();
             } else {
                 Type collectionType = new TypeToken<Stack<LabWork>>(){}.getType();
-                Gson gson = new GsonBuilder()
-                        .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+                Gson collectionData = new GsonBuilder()
                         .registerTypeAdapter(Date.class, new DateDeserializer())
                         .registerTypeAdapter(collectionType, new CollectionDeserializer(uniqueIds))
                         .create();
-                collection = gson.fromJson(json.trim(), collectionType);
+                collection = collectionData.fromJson(jsonData.trim(), collectionType);
             }
         } catch (JsonParseException e){
             success = false;
             printErr("wrong json data");
         }
         return success;
-
     }
 
     public String serializeCollection(){
         if (collection == null || collection.isEmpty()) return "";
-        Gson gson = new GsonBuilder()
+        Gson collectionData = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
                 .registerTypeAdapter(Date.class, new DateSerializer())
                 .setPrettyPrinting().create();
-        String json = gson.toJson(collection);
-        return json;
+        String jsonData = collectionData.toJson(collection);
+        return jsonData;
     }
 }

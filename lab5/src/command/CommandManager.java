@@ -20,8 +20,8 @@ import static io.OutputManager.printErr;
 public class CommandManager implements Commandable {
     private final Commands commands;
     private final CollectionManager<LabWork> collectionManager;
-    private InputManager inputManager;
     private final ReaderWriter fileManager;
+    private InputManager inputManager;
     private boolean isRunning;
     private String currentScriptFileName;
 
@@ -38,39 +38,41 @@ public class CommandManager implements Commandable {
         currentScriptFileName = "";
         commands = new Commands();
 
-        commands.addCommand("help", (a)->print(HelpCommand.getHelp()));
-        ExecuteScriptCommand exeScrCom = new ExecuteScriptCommand(inputManager, collectionManager,
-                                                                  fileManager, currentScriptFileName, callStack);
-        commands.addCommand("execute_script", exeScrCom::ExecuteScript);
-        InfoCommand infoCom = new InfoCommand(collectionManager);
-        commands.addCommand("info", (a)->print(infoCom.getInfo()));
-        AddCommand addCom = new AddCommand(inputManager, collectionManager);
-        commands.addCommand("add", (a)->addCom.add());
-        ShowCommand showCom = new ShowCommand(collectionManager);
-        commands.addCommand("show", (a)->showCom.show());
-        UpdateCommand updCom = new UpdateCommand(inputManager, collectionManager);
-        commands.addCommand("update", updCom::update);
-        RemoveByIdCommand remByIdCom = new RemoveByIdCommand(collectionManager);
-        commands.addCommand("remove_by_id", remByIdCom::removeById);
-        ClearCommand clearCom = new ClearCommand(collectionManager);
-        commands.addCommand("clear", (a)->clearCom.clear());
-        SaveCommand saveCom = new SaveCommand(collectionManager, fileManager);
-        commands.addCommand("save", saveCom::save);
-        AddIfMaxCommand addIfMaxCom = new AddIfMaxCommand(inputManager, collectionManager);
-        commands.addCommand("add_if_max", (a)->addIfMaxCom.addIfMax());
-        RemoveLowerCommand removeLowerCommand = new RemoveLowerCommand(inputManager, collectionManager);
-        commands.addCommand("remove_lower", (a)->removeLowerCommand.removeLower());
-        MinByPersonalQualitiesMinimumCommand minByPerQuaMinCom = new MinByPersonalQualitiesMinimumCommand(collectionManager);
-        commands.addCommand("min_by_personal_qualities_minimum", (a)->minByPerQuaMinCom.minByPersonalQualitiesMinimum());
-        MaxByDisciplineCommand maxByDisCom = new MaxByDisciplineCommand(collectionManager);
-        commands.addCommand("max_by_discipline", (a)->maxByDisCom.maxByDiscipline());
-        FilterStartsWithNameCommand filStarWithNameCom = new FilterStartsWithNameCommand(collectionManager);
-        commands.addCommand("filter_starts_with_name", filStarWithNameCom::filterStartsWithNameCommand);
-        HistoryCommand hisCom = new HistoryCommand(commands.getCommandHistory());
-        commands.addCommand("history", (a)->hisCom.history());
-        LoadCommand loadCom = new LoadCommand(collectionManager, fileManager);
-        commands.addCommand("load", loadCom::load);
-        commands.addCommand("exit", (a)->isRunning=ExitCommand.exit());
+        commands.addCommand("help", (a)->print(HelpCommand.
+                            getHelp()));
+        commands.addCommand("execute_script", (arg)->new ExecuteScriptCommand(inputManager, collectionManager,
+                            fileManager, currentScriptFileName, callStack).
+                            ExecuteScript(arg));
+        commands.addCommand("info", (a)->print(new InfoCommand(collectionManager).
+                            getInfo()));
+        commands.addCommand("add", (a)->new AddCommand(inputManager, collectionManager).
+                            add());
+        commands.addCommand("show", (a)->new ShowCommand(collectionManager).
+                            show());
+        commands.addCommand("update", (arg)->new UpdateCommand(inputManager, collectionManager).
+                            update(arg));
+        commands.addCommand("remove_by_id", (arg)->new RemoveByIdCommand(collectionManager).
+                            removeById(arg));
+        commands.addCommand("clear", (a)->new ClearCommand(collectionManager).
+                            clear());
+        commands.addCommand("save", (arg)->new SaveCommand(collectionManager, fileManager).
+                            save(arg));
+        commands.addCommand("add_if_max", (a)->new AddIfMaxCommand(inputManager, collectionManager).
+                            addIfMax());
+        commands.addCommand("remove_lower", (a)->new RemoveLowerCommand(inputManager, collectionManager).
+                            removeLower());
+        commands.addCommand("min_by_personal_qualities_minimum", (a)->new MinByPersonalQualitiesMinimumCommand(collectionManager).
+                            minByPersonalQualitiesMinimum());
+        commands.addCommand("max_by_discipline", (a)->new MaxByDisciplineCommand(collectionManager).
+                            maxByDiscipline());
+        commands.addCommand("filter_starts_with_name", (arg)->new FilterStartsWithNameCommand(collectionManager).
+                            filterStartsWithNameCommand(arg));
+        commands.addCommand("history", (a)->new HistoryCommand(commands.getCommandHistory()).
+                            history());
+        commands.addCommand("load", (arg)->new LoadCommand(collectionManager, fileManager).
+                            load(arg));
+        commands.addCommand("exit", (a)->isRunning=ExitCommand.
+                            exit());
     }
 
     public void runCommand(String s, String arg){
@@ -83,7 +85,7 @@ public class CommandManager implements Commandable {
         }
     }
     public void runCommand(String s){
-        runCommand(s,null);
+        runCommand(s,"default");
     }
 
     public void consoleMode(){
@@ -97,7 +99,6 @@ public class CommandManager implements Commandable {
     }
     public void fileMode(String path){
         currentScriptFileName = path;
-        isRunning = true;
         inputManager = new FileInputManager(path);
         isRunning = true;
         while (isRunning && inputManager.getScanner().hasNextLine()){

@@ -11,6 +11,7 @@ import java.util.Scanner;
  * Operates the main collection file for saving/loading.
  */
 public class FileManager implements ReaderWriter{
+    private static final int START_OF_BUFFER = 0;
     private String path;
     /**
      * Constructor, just save variable for all class.
@@ -28,7 +29,7 @@ public class FileManager implements ReaderWriter{
     }
     public String read()
     {
-        String str = "";
+        String text = "";
         try {
             if (path == null) throw new EmptyPathException();
             File file = new File(path);
@@ -36,7 +37,7 @@ public class FileManager implements ReaderWriter{
             if (!file.exists()) throw new FileNotExistsException();
             if (!file.canRead()) throw new FileWrongPermissionsException("cannot read file");
             while (scanner.hasNextLine())
-                str += scanner.nextLine();
+                text += scanner.nextLine();
             scanner.close();
         }
         catch(FileException e){
@@ -44,7 +45,7 @@ public class FileManager implements ReaderWriter{
         } catch (IOException e) {
             printErr("cannot access file");
         }
-        return str;
+        return text;
     }
 
     private void create(File file) throws CannotCreateFileException{
@@ -65,10 +66,10 @@ public class FileManager implements ReaderWriter{
             };
             if(!file.canWrite()) throw new FileWrongPermissionsException("cannot write file");
             FileOutputStream out = new FileOutputStream("notes.txt");
-            BufferedOutputStream bufout = new BufferedOutputStream(out);
+            BufferedOutputStream bufferedOut = new BufferedOutputStream(out);
             byte[] buffer = text.getBytes();
-            bufout.write(buffer, 0, buffer.length);
-            bufout.close();
+            bufferedOut.write(buffer, START_OF_BUFFER, buffer.length);
+            bufferedOut.close();
             out.close();
         } catch(FileException e){
             printErr(e.getMessage());

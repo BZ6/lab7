@@ -1,12 +1,18 @@
 package data;
+
+import exceptions.InvalidFieldException;
+
 /**
  * Discipline class
  */
-public class Discipline  implements Validateable{
+public class Discipline implements Validateable {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Integer lectureHours; //Поле не может быть null
 
-    public Discipline(String name, Integer lectureHours){
+    public Discipline(String name, Integer lectureHours) throws InvalidFieldException {
+        if (!validate()){
+            throw new InvalidFieldException();
+        }
         this.name = name;
         this.lectureHours = lectureHours;
     }

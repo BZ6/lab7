@@ -32,10 +32,10 @@ public interface CollectionManager<T> {
 
     /**
      * checks if collection contains element with particular id
-     * @param ID
+     * @param id
      * @return
      */
-    public boolean checkID(Integer ID);
+    public boolean checkId(Integer id);
 
     /**
      * removes element by id

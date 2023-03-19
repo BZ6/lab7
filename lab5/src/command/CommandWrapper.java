@@ -5,18 +5,18 @@ package command;
  */
 public class CommandWrapper {
     private final String argument;
-    private final String command;
+    private final String nameCommand;
     public CommandWrapper(String cmd, String arg){
         argument = arg;
-        command = cmd;
+        nameCommand = cmd;
     }
     public CommandWrapper(String cmd){
-        argument = null;
-        command = cmd;
+        argument = "default";
+        nameCommand = cmd;
     }
 
     public String getCommand(){
-        return command;
+        return nameCommand;
     }
 
     public String getArg(){

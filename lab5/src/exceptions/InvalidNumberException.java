@@ -3,8 +3,9 @@ package exceptions;
  * thrown when number is incorrect
  */
 public class InvalidNumberException extends InvalidDataException {
+    private static final String message = "invalid number format";
     public InvalidNumberException(){
-        super("invalid number format");
+        super(message);
     }
     public InvalidNumberException(String msg){
         super(msg);

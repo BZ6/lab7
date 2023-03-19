@@ -1,7 +1,7 @@
 package data;
 public enum Difficulty {
-    VERY_HARD,
-    IMPOSSIBLE,
-    HOPELESS,
-    TERRIBLE;
+    VERY_HARD,  //очень сложно
+    IMPOSSIBLE, //невозможно
+    HOPELESS,   //безнадежно
+    TERRIBLE;   //ужасающе
 }

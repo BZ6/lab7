@@ -29,7 +29,7 @@ public class UpdateCommand {
             throw new InvalidCommandArgumentException("id must be integer");
         }
         if (collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
-        if (!collectionManager.checkID(id)) throw new InvalidCommandArgumentException("no such id");
+        if (!collectionManager.checkId(id)) throw new InvalidCommandArgumentException("no such id");
 
         collectionManager.updateByID(id, inputManager.readLabWork());
     }

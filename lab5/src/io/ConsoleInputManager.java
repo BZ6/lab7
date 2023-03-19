@@ -4,6 +4,8 @@ import data.Coordinates;
 import data.Difficulty;
 import data.Discipline;
 import data.LabWork;
+import exceptions.InvalidFieldException;
+import exceptions.InvalidNumberException;
 
 import java.util.Scanner;
 public class ConsoleInputManager extends InputManagerImpl{
@@ -30,7 +32,7 @@ public class ConsoleInputManager extends InputManagerImpl{
     }
 
     @Override
-    public Coordinates readCoords(){
+    public Coordinates readCoords() throws InvalidNumberException {
         OutputManager.print("enter coordinates");
         double x = readXCoord();
         Integer y = readYCoord();
@@ -64,7 +66,7 @@ public class ConsoleInputManager extends InputManagerImpl{
     }
 
     @Override
-    public Discipline readDiscipline(){
+    public Discipline readDiscipline() throws InvalidFieldException {
         OutputManager.print("enter organization");
         String name = readName();
         Integer lectureHours = readLectureHours();
@@ -72,7 +74,7 @@ public class ConsoleInputManager extends InputManagerImpl{
     }
 
     @Override
-    public LabWork readLabWork(){
+    public LabWork readLabWork() throws InvalidNumberException, InvalidFieldException {
         String name = readName();
         Coordinates coords = readCoords();
         Integer minimalPoint = readMinimalPoint();

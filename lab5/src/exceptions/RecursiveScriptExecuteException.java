@@ -3,7 +3,8 @@ package exceptions;
  * thrown when script call loops
  */
 public class RecursiveScriptExecuteException extends CommandException{
+    private static final String message = "recursive script execute attempt";
     public RecursiveScriptExecuteException(){
-        super("recursive script execute attempt");
+        super(message);
     }
 }
