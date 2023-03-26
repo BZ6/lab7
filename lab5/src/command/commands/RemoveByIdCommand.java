@@ -25,5 +25,5 @@ public class RemoveByIdCommand implements Command {
         if (collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
         if (!collectionManager.checkId(id)) throw new InvalidCommandArgumentException("no such id");
 
-        collectionManager.removeByID(id);}
+        collectionManager.removeById(id);}
 }

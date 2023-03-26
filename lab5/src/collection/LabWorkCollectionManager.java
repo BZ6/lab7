@@ -94,10 +94,10 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     }
 
     /**
-     * Delete element by ID
+     * Delete element by id
      * @param id
      */
-    public void removeByID(Integer id){
+    public void removeById(Integer id){
         if (checkId(id))
             for (LabWork labWork : collection){
                 if (labWork.getId() == id){
@@ -110,10 +110,10 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     }
 
     /**
-     * Delete element by ID
+     * Delete element by id
      * @param id
      */
-    public void updateByID(Integer id, LabWork newLabWork){
+    public void updateById(Integer id, LabWork newLabWork){
         int currentId = THE_FIRST_ID;
         for (LabWork labWork : collection){
             if (labWork.getId() == id){
@@ -141,7 +141,7 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     }
 
     /**
-     * Add if ID of element bigger than max in collection
+     * Add if id of element bigger than max in collection
      * @param newLabWork Element
      */
     public void addIfMax(LabWork newLabWork){
@@ -155,7 +155,7 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     }
 
     /**
-     * Remove elements in collection if ID of elements smaller then that
+     * Remove elements in collection if id of elements smaller then that
      * @param newLabWork Element
      */
     public void removeLower(LabWork newLabWork){

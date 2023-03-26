@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public interface CollectionManager<T> {
     /**
-     * generates new unique ID for collection
+     * generates new unique id for collection
      * @return
      */
     public Integer generateNextId();
@@ -41,14 +41,14 @@ public interface CollectionManager<T> {
      * removes element by id
      * @param id
      */
-    public void removeByID(Integer id);
+    public void removeById(Integer id);
 
     /**
      * updates element by id
      * @param id
      * @param newElement
      */
-    public void updateByID(Integer id, T newElement);
+    public void updateById(Integer id, T newElement);
 
     /**
      * get collection size
@@ -65,7 +65,7 @@ public interface CollectionManager<T> {
     public void addIfMax(T element);
 
     /**
-     * Remove elements in collection if ID of elements smaller then that
+     * Remove elements in collection if id of elements smaller then that
      * @param newLabWork Element
      */
     public void removeLower(LabWork newLabWork);

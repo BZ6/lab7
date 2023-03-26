@@ -32,6 +32,6 @@ public class UpdateCommand implements Command {
         if (collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
         if (!collectionManager.checkId(id)) throw new InvalidCommandArgumentException("no such id");
 
-        collectionManager.updateByID(id, inputManager.readLabWork());
+        collectionManager.updateById(id, inputManager.readLabWork());
     }
 }
