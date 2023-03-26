@@ -3,7 +3,6 @@ package collection;
 
 import java.util.*;
 import java.lang.reflect.Type;
-import java.time.LocalDate;
 
 import data.LabWork;
 import json.*;
@@ -83,7 +82,7 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     }
 
     /**
-     * Give info about is this ID used
+     * Give info about is this id used
      * @param id
      * @return is it used or not
      */
@@ -221,7 +220,6 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
     public String serializeCollection(){
         if (collection == null || collection.isEmpty()) return "";
         Gson collectionData = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
                 .registerTypeAdapter(Date.class, new DateSerializer())
                 .setPrettyPrinting().create();
         String jsonData = collectionData.toJson(collection);

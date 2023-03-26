@@ -1,13 +1,14 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.CommandException;
 import file.ReaderWriter;
 
 import static io.OutputManager.print;
 
-public class LoadCommand {
+public class LoadCommand implements Command {
     private final CollectionManager<LabWork> collectionManager;
     private final ReaderWriter fileManager;
 
@@ -16,7 +17,7 @@ public class LoadCommand {
         this.fileManager = fileManager;
     }
 
-    public void load(String arg){
+    public void run(String arg){
         if (!(arg == null ||arg.equals(""))) fileManager.setPath(arg);
         String data = fileManager.read();
         if(data.equals("")) throw new CommandException("cannot load, data not found");

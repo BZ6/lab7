@@ -20,7 +20,6 @@ public abstract class InputManagerImpl implements InputManager{
 
     public InputManagerImpl(Scanner sc){
         scanner = sc;
-        scanner.useDelimiter("\n");
     }
 
     public Scanner getScanner(){

@@ -7,9 +7,9 @@ public interface Collectionable extends Comparable<Collectionable>, Validateable
     public int getId();
     /**
      * sets id, useful for replacing object in collection
-     * @param ID
+     * @param id
      */
-    public void setId(int ID);
+    public void setId(int id);
 
     public String getName();
 

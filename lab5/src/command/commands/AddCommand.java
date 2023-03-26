@@ -1,11 +1,12 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.InvalidDataException;
 import io.InputManager;
 
-public class AddCommand {
+public class AddCommand implements Command {
     private final InputManager inputManager;
     private final CollectionManager<LabWork> collectionManager;
 
@@ -13,7 +14,7 @@ public class AddCommand {
         this.inputManager = inputManager;
         this.collectionManager = collectionManager;
     }
-    public void add() throws InvalidDataException {
+    public void run(String arg) throws InvalidDataException {
         collectionManager.add(inputManager.readLabWork());
     }
 }

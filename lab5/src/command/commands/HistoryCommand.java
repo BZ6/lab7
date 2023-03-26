@@ -1,17 +1,19 @@
 package command.commands;
 
+import command.core.Command;
+
 import java.util.Stack;
 
 import static io.OutputManager.print;
 
-public class HistoryCommand {
+public class HistoryCommand implements Command {
     private final Stack<String> commandHistory;
 
    public HistoryCommand(Stack<String> commandHistory){
        this.commandHistory = commandHistory;
    }
 
-   public void history(){
+   public void run(String arg){
        if (commandHistory.isEmpty()) {
            print("history is empty");
        } else if (commandHistory.size() < 10) {

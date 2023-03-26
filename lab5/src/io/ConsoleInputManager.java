@@ -12,7 +12,6 @@ public class ConsoleInputManager extends InputManagerImpl{
 
     public ConsoleInputManager(){
         super(new Scanner(System.in));
-        getScanner().useDelimiter("\n");
     }
 
     @Override
@@ -67,7 +66,7 @@ public class ConsoleInputManager extends InputManagerImpl{
 
     @Override
     public Discipline readDiscipline() throws InvalidFieldException {
-        OutputManager.print("enter organization");
+        OutputManager.print("enter discipline");
         String name = readName();
         Integer lectureHours = readLectureHours();
         return new Discipline(name, lectureHours);

@@ -1,6 +1,7 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.CommandException;
 import file.ReaderWriter;
@@ -10,7 +11,7 @@ import java.util.Stack;
 
 import static io.OutputManager.print;
 
-public class SaveCommand {
+public class SaveCommand implements Command {
     private final CollectionManager<LabWork> collectionManager;
     private final ReaderWriter fileManager;
 
@@ -19,7 +20,7 @@ public class SaveCommand {
         this.fileManager = fileManager;
     }
 
-    public void save(String arg){
+    public void run(String arg){
         if (!(arg == null ||arg.equals(""))) fileManager.setPath(arg);
         if (collectionManager.getCollection().isEmpty()) print("collection is empty");
         if(!fileManager.write(collectionManager.serializeCollection())) throw new CommandException("cannot save collection");

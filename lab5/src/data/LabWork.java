@@ -30,7 +30,15 @@ public class LabWork implements Collectionable{
      * @param discipline
      */
     public LabWork(String name, Coordinates coordinates, Integer minimalPoint, int personalQualitiesMinimum, Double averagePoint, Difficulty difficulty, Discipline discipline) throws InvalidFieldException {
-        if (!validate()){
+        if (
+                coordinates == null || !coordinates.validate() ||
+                discipline == null || !discipline.validate() ||
+                (personalQualitiesMinimum <= 0) ||
+                        (averagePoint != null && (averagePoint <= 0)) ||
+                minimalPoint == null || (minimalPoint <= 0) ||
+                name == null || name.equals("") ||
+                difficulty == null
+        ){
             throw new InvalidFieldException();
         }
         creationDate = new java.util.Date();
@@ -57,7 +65,9 @@ public class LabWork implements Collectionable{
      * @param id
      */
     public void setId(int id){
-        this.id = id;
+        if (id > 0) {
+            this.id = id;
+        }
     }
 
 

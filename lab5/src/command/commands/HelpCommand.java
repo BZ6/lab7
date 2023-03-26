@@ -1,6 +1,10 @@
 package command.commands;
 
-public class HelpCommand {
+import command.core.Command;
+
+import static io.OutputManager.print;
+
+public class HelpCommand implements Command {
     private static final String TEXT_HELP = """
     \r
     help : show help for available commands\r
@@ -49,7 +53,7 @@ public class HelpCommand {
     which starts with the given substring\r
     """;
 
-    public static String getHelp(){
-        return TEXT_HELP;
+    public void run(String arg){
+        print(TEXT_HELP);
     }
 }

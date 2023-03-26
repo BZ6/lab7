@@ -2,6 +2,7 @@ package command.commands;
 
 import collection.CollectionManager;
 import command.CommandManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.MissedCommandArgumentException;
 import exceptions.RecursiveScriptExecuteException;
@@ -12,7 +13,7 @@ import java.util.Stack;
 
 import static io.OutputManager.print;
 
-public class ExecuteScriptCommand {
+public class ExecuteScriptCommand implements Command {
     private final InputManager inputManager;
     private final CollectionManager<LabWork> collectionManager;
     private final ReaderWriter fileManager;
@@ -26,7 +27,7 @@ public class ExecuteScriptCommand {
         this.currentScriptFileName = currentScriptFileName;
         this.callStack = callStack;
     }
-    public void ExecuteScript(String arg){
+    public void run(String arg){
         if (arg == null || arg.equals("")) throw new MissedCommandArgumentException();
 
         if (callStack.contains(currentScriptFileName)) throw new RecursiveScriptExecuteException();

@@ -1,6 +1,7 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.EmptyCollectionException;
 import exceptions.InvalidCommandArgumentException;
@@ -8,7 +9,7 @@ import exceptions.InvalidDataException;
 import exceptions.MissedCommandArgumentException;
 import io.InputManager;
 
-public class UpdateCommand {
+public class UpdateCommand implements Command {
     private final InputManager inputManager;
     private final CollectionManager<LabWork> collectionManager;
     private static final Integer THE_FIRST_ID = 1;
@@ -18,7 +19,7 @@ public class UpdateCommand {
         this.collectionManager = collectionManager;
     }
 
-    public void update(String arg) throws InvalidDataException {
+    public void run(String arg) throws InvalidDataException {
         Integer id = THE_FIRST_ID;
         if (arg == null || arg.equals("")){
             throw new MissedCommandArgumentException();

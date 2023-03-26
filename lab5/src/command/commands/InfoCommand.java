@@ -1,15 +1,18 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 
-public class InfoCommand {
+import static io.OutputManager.print;
+
+public class InfoCommand implements Command {
     private final CollectionManager<LabWork> collectionManager;
 
     public InfoCommand(CollectionManager<LabWork> collectionManager){
         this.collectionManager = collectionManager;
     }
-    public String getInfo(){
-        return collectionManager.getInfo();
+    public void run(String arg){
+        print(collectionManager.getInfo());
     }
 }

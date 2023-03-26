@@ -1,18 +1,19 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.EmptyCollectionException;
 import exceptions.MissedCommandArgumentException;
 
-public class FilterStartsWithNameCommand {
+public class FilterStartsWithNameCommand implements Command {
     private final CollectionManager<LabWork> collectionManager;
 
     public FilterStartsWithNameCommand(CollectionManager<LabWork> collectionManager){
         this.collectionManager = collectionManager;
     }
 
-    public void filterStartsWithNameCommand(String arg){
+    public void run(String arg){
         if (arg == null || arg.equals("")){
             throw new MissedCommandArgumentException();
         } else{

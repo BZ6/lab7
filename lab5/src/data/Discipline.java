@@ -10,7 +10,7 @@ public class Discipline implements Validateable {
     private Integer lectureHours; //Поле не может быть null
 
     public Discipline(String name, Integer lectureHours) throws InvalidFieldException {
-        if (!validate()){
+        if (name == null || name.equals("") || lectureHours == null){
             throw new InvalidFieldException();
         }
         this.name = name;
@@ -46,6 +46,6 @@ public class Discipline implements Validateable {
     }
 
     public boolean validate(){
-        return !(name==null || name.equals("") || lectureHours==null);
+        return (name != null && !name.equals("") && lectureHours != null);
     }
 }

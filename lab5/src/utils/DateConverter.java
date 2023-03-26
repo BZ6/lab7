@@ -3,8 +3,6 @@ package utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import exceptions.InvalidDateFormatException;
@@ -12,7 +10,7 @@ import exceptions.InvalidDateFormatException;
  * Provides methods to convenient conversion between String and Date
  */
 public class DateConverter {
-    private static DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    private static final DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * convert Date to String

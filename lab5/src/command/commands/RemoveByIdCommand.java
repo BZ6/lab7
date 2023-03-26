@@ -1,19 +1,20 @@
 package command.commands;
 
 import collection.CollectionManager;
+import command.core.Command;
 import data.LabWork;
 import exceptions.EmptyCollectionException;
 import exceptions.InvalidCommandArgumentException;
 import exceptions.MissedCommandArgumentException;
 
-public class RemoveByIdCommand {
+public class RemoveByIdCommand implements Command {
     private final CollectionManager<LabWork> collectionManager;
 
     public RemoveByIdCommand(CollectionManager<LabWork> collectionManager){
         this.collectionManager = collectionManager;
     }
 
-    public void removeById(String arg){
+    public void run(String arg){
         int id;
         if (arg == null || arg.equals("")) throw new MissedCommandArgumentException();
         try{
