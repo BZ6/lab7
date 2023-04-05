@@ -24,5 +24,5 @@ public interface Commandable {
      * executes script from file
      * @param path
      */
-    public void fileMode(String path);
+    public boolean fileMode(String path);
 }

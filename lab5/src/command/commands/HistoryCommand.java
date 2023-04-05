@@ -17,7 +17,8 @@ public class HistoryCommand implements Command {
        if (commandHistory.isEmpty()) {
            print("history is empty");
        } else if (commandHistory.size() < 10) {
-           print("history have not 10 commands in history");
+           for (int i=commandHistory.size(); i>0; i--)
+               print(commandHistory.get(commandHistory.size()-i));
        } else{
            for (int i=10; i>0; i--)
                print(commandHistory.get(commandHistory.size()-i));

@@ -5,6 +5,7 @@ import data.Difficulty;
 import data.Discipline;
 import data.LabWork;
 import exceptions.InvalidFieldException;
+import exceptions.InvalidInputCharacterException;
 import exceptions.InvalidNumberException;
 
 import java.util.Scanner;
@@ -15,23 +16,23 @@ public class ConsoleInputManager extends InputManagerImpl{
     }
 
     @Override
-    public String readName(){
-        return new Question<String>("enter name:", super::readName).getAnswer();
+    public String readName() throws InvalidInputCharacterException {
+        return new Question<String>("enter name (value must be not empty):", super::readName).getAnswer();
     }
 
 
     @Override
-    public double readXCoord(){
+    public double readXCoord() throws InvalidInputCharacterException {
         return new Question<Double>("enter x:", super::readXCoord).getAnswer();
     }
 
     @Override
-    public Integer readYCoord(){
-        return new Question<Integer>("enter y:", super::readYCoord).getAnswer();
+    public Integer readYCoord() throws InvalidInputCharacterException {
+        return new Question<Integer>("enter y (value must be bigger than -545):", super::readYCoord).getAnswer();
     }
 
     @Override
-    public Coordinates readCoords() throws InvalidNumberException {
+    public Coordinates readCoords() throws InvalidNumberException, InvalidInputCharacterException {
         OutputManager.print("enter coordinates");
         double x = readXCoord();
         Integer y = readYCoord();
@@ -40,32 +41,32 @@ public class ConsoleInputManager extends InputManagerImpl{
     }
 
     @Override
-    public Integer readMinimalPoint(){
-        return new Question<Integer>("enter minimal point:",super::readMinimalPoint).getAnswer();
+    public Integer readMinimalPoint() throws InvalidInputCharacterException {
+        return new Question<Integer>("enter minimal point (value must be bigger than 0):",super::readMinimalPoint).getAnswer();
     }
 
     @Override
-    public int readPersonalQualitiesMinimum(){
-        return new Question<Integer>("enter personal qualities minimum:",super::readPersonalQualitiesMinimum).getAnswer();
+    public int readPersonalQualitiesMinimum() throws InvalidInputCharacterException {
+        return new Question<Integer>("enter personal qualities minimum (value must be bigger than 0):",super::readPersonalQualitiesMinimum).getAnswer();
     }
 
     @Override
-    public Double readAveragePoint(){
-        return new Question<Double>("enter average point:",super::readAveragePoint).getAnswer();
+    public Double readAveragePoint() throws InvalidInputCharacterException {
+        return new Question<Double>("enter average point (value must be bigger than 0):",super::readAveragePoint).getAnswer();
     }
 
     @Override
-    public Difficulty readDifficulty(){
+    public Difficulty readDifficulty() throws InvalidInputCharacterException {
         return new Question<Difficulty>("enter difficulty(VERY_HARD, IMPOSSIBLE, HOPELESS, TERRIBLE):", super::readDifficulty).getAnswer();
     }
 
     @Override
-    public Integer readLectureHours(){
+    public Integer readLectureHours() throws InvalidInputCharacterException {
         return new Question<Integer>("enter lecture hours:",super::readLectureHours).getAnswer();
     }
 
     @Override
-    public Discipline readDiscipline() throws InvalidFieldException {
+    public Discipline readDiscipline() throws InvalidFieldException, InvalidInputCharacterException {
         OutputManager.print("enter discipline");
         String name = readName();
         Integer lectureHours = readLectureHours();
@@ -73,7 +74,7 @@ public class ConsoleInputManager extends InputManagerImpl{
     }
 
     @Override
-    public LabWork readLabWork() throws InvalidNumberException, InvalidFieldException {
+    public LabWork readLabWork() throws InvalidNumberException, InvalidFieldException, InvalidInputCharacterException {
         String name = readName();
         Coordinates coords = readCoords();
         Integer minimalPoint = readMinimalPoint();

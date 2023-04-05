@@ -34,8 +34,8 @@ public class ExecuteScriptCommand implements Command {
 
         callStack.push(currentScriptFileName);
         CommandManager process = new CommandManager(collectionManager, inputManager, fileManager);
-        process.fileMode(arg);
+        if (process.fileMode(arg))
+            print("successfully executed script " + arg);
         callStack.pop();
-        print("successfully executed script " + arg);
     }
 }

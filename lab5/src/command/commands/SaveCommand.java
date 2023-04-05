@@ -21,8 +21,8 @@ public class SaveCommand implements Command {
     }
 
     public void run(String arg){
-        if (!(arg == null ||arg.equals(""))) fileManager.setPath(arg);
+        if (arg != null && !arg.equals("")) fileManager.setPath(arg);
         if (collectionManager.getCollection().isEmpty()) print("collection is empty");
-        if(!fileManager.write(collectionManager.serializeCollection())) throw new CommandException("cannot save collection");
+        if (!fileManager.write(collectionManager.serializeCollection())) throw new CommandException("cannot save collection");
     }
 }

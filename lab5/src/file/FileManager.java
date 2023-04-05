@@ -21,7 +21,8 @@ public class FileManager implements ReaderWriter{
         path = pth;
     }
     public void setPath(String pth){
-        path = pth;
+        if (!pth.equals("default"))
+            path = pth;
     }
 
     public FileManager(){
@@ -58,14 +59,15 @@ public class FileManager implements ReaderWriter{
     public boolean write(String text){
         boolean res = true;
         try{
-            if (path == null) throw new EmptyPathException();
+            if (path == null || path.equals("")) throw new EmptyPathException();
             File file = new File(path);
             if(!file.exists()) {
                 print("src/file " + path +" does not exist, trying to create new file");
                 create(file);
             };
             if(!file.canWrite()) throw new FileWrongPermissionsException("cannot write file");
-            FileOutputStream out = new FileOutputStream("notes.txt");
+
+            FileOutputStream out = new FileOutputStream(path);
             BufferedOutputStream bufferedOut = new BufferedOutputStream(out);
             byte[] buffer = text.getBytes();
             bufferedOut.write(buffer, START_OF_BUFFER, buffer.length);

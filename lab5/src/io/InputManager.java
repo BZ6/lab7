@@ -12,63 +12,63 @@ public interface InputManager {
      * @return
      * @throws EmptyStringException
      */
-    public String readName() throws EmptyStringException;
+    public String readName() throws EmptyStringException, InvalidInputCharacterException;
 
     /**
      * reads x from input
      * @return
      * @throws InvalidNumberException
      */
-    public double readXCoord() throws InvalidNumberException;
+    public double readXCoord() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads y from input
      * @return
      * @throws InvalidNumberException
      */
-    public Integer readYCoord() throws InvalidNumberException;
+    public Integer readYCoord() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads coordinates from input
      * @return
      * @throws InvalidNumberException
      */
-    public Coordinates readCoords() throws InvalidNumberException;
+    public Coordinates readCoords() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads minimal point from input
      * @return
      * @throws InvalidNumberException
      */
-    public Integer readMinimalPoint() throws InvalidNumberException;
+    public Integer readMinimalPoint() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads personal qualities minimum from input
      * @return
      * @throws InvalidNumberException
      */
-    public int readPersonalQualitiesMinimum() throws InvalidNumberException;
+    public int readPersonalQualitiesMinimum() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads average point from input
      * @return
      * @throws InvalidNumberException
      */
-    public Double readAveragePoint() throws InvalidNumberException;
+    public Double readAveragePoint() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads position from input
      * @return
      * @throws InvalidEnumException
      */
-    public Difficulty readDifficulty() throws InvalidEnumException;
+    public Difficulty readDifficulty() throws InvalidEnumException, InvalidInputCharacterException;
 
     /**
      * reads lecture hours from input
      * @return
      * @throws InvalidNumberException
      */
-    public Integer readLectureHours() throws InvalidNumberException;
+    public Integer readLectureHours() throws InvalidNumberException, InvalidInputCharacterException;
 
     /**
      * reads organization from input
@@ -88,7 +88,7 @@ public interface InputManager {
      * reads command-argument pair from input
      * @return
      */
-    public CommandWrapper readCommand();
+    public CommandWrapper readCommand() throws InvalidInputCharacterException;
 
     /**
      * gets input scanner

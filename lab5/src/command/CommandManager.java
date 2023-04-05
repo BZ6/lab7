@@ -7,6 +7,7 @@ import command.core.Commands;
 import data.LabWork;
 import exceptions.CommandException;
 import exceptions.InvalidDataException;
+import exceptions.InvalidInputCharacterException;
 import exceptions.NoSuchCommandException;
 import file.ReaderWriter;
 import io.ConsoleInputManager;
@@ -14,6 +15,8 @@ import io.FileInputManager;
 import io.InputManager;
 import utils.Bool;
 import java.util.Stack;
+
+import static io.OutputManager.print;
 import static io.OutputManager.printErr;
 
 public class CommandManager implements Commandable {
@@ -21,7 +24,7 @@ public class CommandManager implements Commandable {
     private final CollectionManager<LabWork> collectionManager;
     private final ReaderWriter fileManager;
     private InputManager inputManager;
-    private Bool isRunning;
+    private final Bool isRunning;
     private String currentScriptFileName;
 
     private static final Stack<String> callStack = new Stack<>();
@@ -62,8 +65,7 @@ public class CommandManager implements Commandable {
         try{
             if (!commands.hasCommand(s)) throw new NoSuchCommandException();
             commands.get(s).run(arg);
-        }
-        catch(CommandException|InvalidDataException e){
+        } catch(CommandException | InvalidDataException e){
             printErr(e.getMessage());
         }
     }
@@ -75,18 +77,32 @@ public class CommandManager implements Commandable {
         inputManager = new ConsoleInputManager();
         isRunning.setValue(true);
         while (isRunning.getValue()){
-            System.out.print("enter command (help to get command list): ");
-            CommandWrapper pair = inputManager.readCommand();
-            runCommand(pair.getCommand(), pair.getArg());
+            print("enter command (help to get command list): ");
+            try{
+                CommandWrapper pair = inputManager.readCommand();
+                runCommand(pair.getCommand(), pair.getArg());
+            }
+            catch (InvalidInputCharacterException e){
+                printErr(e.getMessage());
+                isRunning.setValue(false);
+                break;
+            }
         }
     }
-    public void fileMode(String path){
+    public boolean fileMode(String path){
         currentScriptFileName = path;
         inputManager = new FileInputManager(path);
         isRunning.setValue(true);
         while (isRunning.getValue() && inputManager.getScanner().hasNextLine()){
-            CommandWrapper pair = inputManager.readCommand();
-            runCommand(pair.getCommand(), pair.getArg());
+            try{
+                CommandWrapper pair = inputManager.readCommand();
+                runCommand(pair.getCommand(), pair.getArg());
+            }
+            catch (InvalidInputCharacterException e){
+                printErr(e.getMessage());
+                return false;
+            }
         }
+        return true;
     }
 }
