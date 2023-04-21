@@ -33,6 +33,7 @@ public class ServerCommandManager extends CommandManager {
         addCommand(new MinByPersonalQualitiesMinimumCommand(collectionManager));
         addCommand(new MaxByDisciplineCommand(collectionManager));
         addCommand(new FilterStartsWithNameCommand(collectionManager));
+        addCommand(new HistoryCommand(this));
         addCommand(new SaveCommand(collectionManager,fileManager));
         addCommand(new LoadCommand(collectionManager,fileManager));
     }

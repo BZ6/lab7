@@ -19,7 +19,7 @@ import static common.io.OutputManager.printErr;
 /**
  * client class
  */
-public class Client extends  Thread implements SenderReceiver {
+public class Client extends Thread implements SenderReceiver {
     private SocketAddress address;
     private DatagramSocket socket;
     public final int MAX_TIME_OUT = 1000;
