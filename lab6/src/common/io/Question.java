@@ -1,7 +1,7 @@
-package io;
-import static io.OutputManager.*;
+package common.io;
+import static common.io.OutputManager.*;
 
-import exceptions.*;
+import common.exceptions.*;
 
 /**
  * user input wrapper

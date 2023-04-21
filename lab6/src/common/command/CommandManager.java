@@ -1,30 +1,28 @@
-package command;
+package common.command;
 
-import collection.CollectionManager;
-import command.commands.*;
-import command.core.Commandable;
-import command.core.Commands;
-import data.LabWork;
-import exceptions.CommandException;
-import exceptions.InvalidDataException;
-import exceptions.InvalidInputCharacterException;
-import exceptions.NoSuchCommandException;
-import file.ReaderWriter;
-import io.ConsoleInputManager;
-import io.FileInputManager;
-import io.InputManager;
-import utils.Bool;
+import common.command.core.Command;
+import common.command.core.Commandable;
+import common.command.core.Commands;
+import common.connection.CommandMsg;
+import common.connection.Response;
+import common.connection.Status;
+import common.exceptions.FileException;
+import common.exceptions.NoSuchCommandException;
+import common.io.ConsoleInputManager;
+import common.io.FileInputManager;
+import common.io.InputManager;
+
+import java.io.Closeable;
 import java.util.Stack;
 
-import static io.OutputManager.print;
-import static io.OutputManager.printErr;
+import static common.io.OutputManager.print;
 
-public class CommandManager implements Commandable {
+
+public abstract class CommandManager implements Commandable, Closeable {
     private final Commands commands;
-    private final CollectionManager<LabWork> collectionManager;
-    private final ReaderWriter fileManager;
+
     private InputManager inputManager;
-    private final Bool isRunning;
+    private boolean isRunning;
     private String currentScriptFileName;
 
     private static final Stack<String> callStack = new Stack<>();
@@ -32,77 +30,74 @@ public class CommandManager implements Commandable {
     public void clearStack(){
         callStack.clear();
     }
-    public CommandManager(CollectionManager<LabWork> cManager, InputManager iManager, ReaderWriter fManager){
-        isRunning = new Bool();
-        isRunning.setValue(false);
-        this.inputManager = iManager;
-        this.collectionManager = cManager;
-        this.fileManager = fManager;
+    public Stack<String> getStack(){
+        return callStack;
+    }
+    public String getCurrentScriptFileName(){
+        return currentScriptFileName;
+    }
+    public CommandManager(){
+        isRunning = false;
         currentScriptFileName = "";
         commands = new Commands();
-
-        commands.addCommand("exit", new ExitCommand(isRunning));
-        commands.addCommand("help", new HelpCommand());
-        commands.addCommand("info", new InfoCommand(collectionManager));
-        commands.addCommand("execute_script", new ExecuteScriptCommand(inputManager, collectionManager,
-                fileManager, currentScriptFileName, callStack));
-        commands.addCommand("add", new AddCommand(inputManager, collectionManager));
-        commands.addCommand("show", new ShowCommand(collectionManager));
-        commands.addCommand("update", new UpdateCommand(inputManager, collectionManager));
-        commands.addCommand("remove_by_id", new RemoveByIdCommand(collectionManager));
-        commands.addCommand("clear", new ClearCommand(collectionManager));
-        commands.addCommand("save", new SaveCommand(collectionManager, fileManager));
-        commands.addCommand("add_if_max", new AddIfMaxCommand(inputManager, collectionManager));
-        commands.addCommand("remove_lower", new RemoveLowerCommand(inputManager, collectionManager));
-        commands.addCommand("min_by_personal_qualities_minimum", new MinByPersonalQualitiesMinimumCommand(collectionManager));
-        commands.addCommand("max_by_discipline", new MaxByDisciplineCommand(collectionManager));
-        commands.addCommand("filter_starts_with_name", new FilterStartsWithNameCommand(collectionManager));
-        commands.addCommand("history", new HistoryCommand(commands.getCommandHistory()));
-        commands.addCommand("load", new LoadCommand(collectionManager, fileManager));
+    }
+    public void addCommand(Command c) {
+        commands.addCommand(c.getName(),c);
+    }
+    public void addCommand(String key, Command c){
+        commands.addCommand(key, c);
     }
 
-    public void runCommand(String s, String arg){
-        try{
-            if (!commands.hasCommand(s)) throw new NoSuchCommandException();
-            commands.get(s).run(arg);
-        } catch(CommandException | InvalidDataException e){
-            printErr(e.getMessage());
-        }
+    public Command getCommand(String s){
+        if (! hasCommand(s)) throw new NoSuchCommandException();
+        Command cmd =  commands.get(s);
+        return cmd;
     }
-    public void runCommand(String s){
-        runCommand(s,"default");
+    public boolean hasCommand(String s){
+        return commands.hasCommand(s);
     }
 
     public void consoleMode(){
         inputManager = new ConsoleInputManager();
-        isRunning.setValue(true);
-        while (isRunning.getValue()){
+        isRunning = true;
+        while(isRunning){
             print("enter command (help to get command list): ");
-            try{
-                CommandWrapper pair = inputManager.readCommand();
-                runCommand(pair.getCommand(), pair.getArg());
-            }
-            catch (InvalidInputCharacterException e){
-                printErr(e.getMessage());
-                isRunning.setValue(false);
-                break;
+            CommandMsg commandMsg = inputManager.readCommand();
+            Response answerMsg = runCommand(commandMsg);
+            if(answerMsg.getStatus()== Status.EXIT) {
+                close();
             }
         }
     }
-    public boolean fileMode(String path){
+    public void fileMode(String path) throws FileException {
         currentScriptFileName = path;
         inputManager = new FileInputManager(path);
-        isRunning.setValue(true);
-        while (isRunning.getValue() && inputManager.getScanner().hasNextLine()){
-            try{
-                CommandWrapper pair = inputManager.readCommand();
-                runCommand(pair.getCommand(), pair.getArg());
-            }
-            catch (InvalidInputCharacterException e){
-                printErr(e.getMessage());
-                return false;
+        isRunning = true;
+        while(isRunning && inputManager.getScanner().hasNextLine()){
+            CommandMsg commandMsg= inputManager.readCommand();
+            Response answerMsg = runCommand(commandMsg);
+            if(answerMsg.getStatus()==Status.EXIT) {
+                close();
             }
         }
-        return true;
+    }
+
+    public Stack<String> getCommandHistory(){
+        return commands.getCommandHistory();
+    }
+    public void setInputManager(InputManager in){
+        inputManager = in;
+    }
+    public InputManager getInputManager(){
+        return inputManager;
+    }
+    public boolean isRunning(){
+        return isRunning;
+    }
+    public void setRunning(boolean running){
+        isRunning = running;
+    }
+    public void close(){
+        setRunning(false);
     }
 }

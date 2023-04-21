@@ -1,6 +1,6 @@
-package data;
+package common.data;
 
-import exceptions.InvalidFieldException;
+import common.exceptions.InvalidFieldException;
 
 /**
  * Discipline class

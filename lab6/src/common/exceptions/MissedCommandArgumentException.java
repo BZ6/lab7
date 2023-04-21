@@ -1,4 +1,4 @@
-package exceptions;
+package common.exceptions;
 /**
  * thrown  when user does not enter required command argument
  */

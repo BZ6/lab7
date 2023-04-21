@@ -1,4 +1,4 @@
-package exceptions;
+package common.exceptions;
 /**
  * base class for all exceptions caused by invalid input
  */

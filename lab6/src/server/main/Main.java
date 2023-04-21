@@ -1,31 +1,39 @@
-package main;
+package server.main;
 
-import collection.LabWorkCollectionManager;
-import command.CommandManager;
-import data.*;
-import file.FileManager;
-import io.*;
+import common.exceptions.ConnectionException;
+import common.exceptions.InvalidPortException;
+import common.exceptions.InvalidProgramArgumentsException;
+import server.server.Server;
 
-import java.io.PrintStream;
-import collection.CollectionManager;
+import static common.io.OutputManager.print;
 
-import static io.OutputManager.*;
-
+/**
+ * main class for launching server with arguments
+ */
 public class Main {
-
     public static void main(String[] args) throws Exception {
-        System.setOut(new PrintStream(System.out, true, "UTF-8"));
-        FileManager fileManager = new FileManager();
-        CollectionManager<LabWork> collectionManager = new LabWorkCollectionManager();
-        if (args.length!=0){
-            fileManager.setPath(args[0]);
-            collectionManager.deserializeCollection(fileManager.read());
-        } else{
-            print("no file passed by argument. you can load file using load command");
-        }
+        int port = 0;
+        String strPort = "";
+        String path = "labWork_database";
+        try {
+            if(args.length >= 2) {
+                path = args[1];
+                strPort = args[0];
+            }
+            if (args.length == 1) strPort = args[0];
+            if(args.length == 0) throw new InvalidProgramArgumentsException("no address passed by arguments");
+            try {
+                port = Integer.parseInt(strPort);
+            } catch (NumberFormatException e){
+                throw new InvalidPortException();
+            }
+            Server server = new Server(port, path);
+            server.start();
+            server.consoleMode();
 
-        InputManager consoleManager = new ConsoleInputManager();
-        CommandManager commandManager = new CommandManager(collectionManager,consoleManager,fileManager);
-        commandManager.consoleMode();
+        }
+        catch (InvalidProgramArgumentsException| ConnectionException e){
+            print(e.getMessage());
+        }
     }
 }

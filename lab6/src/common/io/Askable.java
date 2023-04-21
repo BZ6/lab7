@@ -1,5 +1,5 @@
-package io;
-import exceptions.*;
+package common.io;
+import common.exceptions.*;
 @FunctionalInterface
 /**
  *user input callback

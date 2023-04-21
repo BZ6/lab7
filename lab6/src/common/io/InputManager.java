@@ -1,10 +1,10 @@
-package io;
+package common.io;
 
 import java.util.Scanner;
 
-import command.CommandWrapper;
-import data.*;
-import exceptions.*;
+import common.connection.CommandMsg;
+import common.data.*;
+import common.exceptions.*;
 
 public interface InputManager {
     /**
@@ -86,9 +86,10 @@ public interface InputManager {
 
     /**
      * reads command-argument pair from input
+     *
      * @return
      */
-    public CommandWrapper readCommand() throws InvalidInputCharacterException;
+    public CommandMsg readCommand() throws InvalidInputCharacterException;
 
     /**
      * gets input scanner

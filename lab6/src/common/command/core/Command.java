@@ -1,13 +1,15 @@
-package command.core;
+package common.command.core;
 
-import exceptions.CommandException;
-import exceptions.InvalidDataException;
+import common.connection.Request;
+import common.connection.Response;
 
-@FunctionalInterface
 /**
  * Command callback interface
  */
 
 public interface Command {
-    public void run(String arg) throws CommandException, InvalidDataException;
+    public Response run();
+    public String getName();
+    public CommandType getType();
+    public void setArgument(Request a);
 }

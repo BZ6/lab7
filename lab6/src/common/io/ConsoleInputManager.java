@@ -1,12 +1,12 @@
-package io;
+package common.io;
 
-import data.Coordinates;
-import data.Difficulty;
-import data.Discipline;
-import data.LabWork;
-import exceptions.InvalidFieldException;
-import exceptions.InvalidInputCharacterException;
-import exceptions.InvalidNumberException;
+import common.data.Coordinates;
+import common.data.Difficulty;
+import common.data.Discipline;
+import common.data.LabWork;
+import common.exceptions.InvalidFieldException;
+import common.exceptions.InvalidInputCharacterException;
+import common.exceptions.InvalidNumberException;
 
 import java.util.Scanner;
 public class ConsoleInputManager extends InputManagerImpl{

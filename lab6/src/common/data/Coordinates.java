@@ -1,12 +1,12 @@
-package data;
+package common.data;
 
-import exceptions.InvalidNumberException;
+import common.exceptions.InvalidNumberException;
 
 public class Coordinates implements Validateable {
     private double x;
     private Integer y; //Значение поля должно быть больше -545, Поле не может быть null
     public Coordinates(double x, Integer y) throws InvalidNumberException {
-        if (y == null || y <=- 545 || Double.isInfinite(x) || Double.isNaN(x)){
+        if (y == null || y <=- 545 || Double.isInfinite(x) || Double.isNaN(x)) {
             throw new InvalidNumberException();
         }
         this.x = x;

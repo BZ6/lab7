@@ -1,4 +1,4 @@
-package command;
+package common.command;
 
 /**
  * command wrapper class for command parsing

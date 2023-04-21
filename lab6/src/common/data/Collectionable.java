@@ -1,4 +1,4 @@
-package data;
+package common.data;
 /**
  * interface for storable object
  */
@@ -16,7 +16,7 @@ public interface Collectionable extends Comparable<Collectionable>, Validateable
     /**
      * compairs two objects
      */
-    public int compareTo(Collectionable worker);
+    public int compareTo(Collectionable labWork);
 
     public boolean validate();
 }

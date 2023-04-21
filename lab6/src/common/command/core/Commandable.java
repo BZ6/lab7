@@ -1,19 +1,40 @@
-package command.core;
+package common.command.core;
+
+import common.connection.Request;
+import common.connection.Response;
+import common.exceptions.FileException;
 
 public interface Commandable {
-
     /**
-     * executes command with argument
+     * adds command
      * @param key command name
-     * @param arg
+     * @param cmd command callback
      */
-    public void runCommand(String key, String arg);
+    public default void addCommand(String key, Command cmd){
+        addCommand(key,cmd);
+    }
 
     /**
-     * executes command without argument
-     * @param key
+     * adds command
+     * @param cmd
      */
-    public void runCommand(String key);
+    public void addCommand(Command cmd);
+
+    /**
+     * runs command
+     * @param req
+     * @return
+     */
+    public Response runCommand(Request req);
+
+    public Command getCommand(String key);
+    public default Command getCommand(Request req){
+        return getCommand(req.getCommandName());
+    }
+    public boolean hasCommand(String s);
+    public default boolean hasCommand(Request req){
+        return hasCommand(req.getCommandName());
+    }
 
     /**
      * runs in command interpreter in console
@@ -24,5 +45,5 @@ public interface Commandable {
      * executes script from file
      * @param path
      */
-    public boolean fileMode(String path);
+    public void fileMode(String path) throws FileException;
 }

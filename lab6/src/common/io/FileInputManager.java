@@ -1,12 +1,13 @@
-package io;
+package common.io;
 import java.util.Scanner;
 
-import file.FileManager;
+import common.exceptions.FileException;
+import common.file.FileManager;
 /**
  * Operates input
  */
 public class FileInputManager extends InputManagerImpl{
-    public FileInputManager(String path){
+    public FileInputManager(String path) throws FileException {
         super(new Scanner(new FileManager(path).read()));
     }
 }

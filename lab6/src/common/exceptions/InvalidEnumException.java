@@ -1,4 +1,4 @@
-package exceptions;
+package common.exceptions;
 /**
  * thrown when input does not match enum
  */

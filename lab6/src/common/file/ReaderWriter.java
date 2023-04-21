@@ -1,4 +1,6 @@
-package file;
+package common.file;
+
+import common.exceptions.FileException;
 
 public interface ReaderWriter {
     /**
@@ -11,7 +13,7 @@ public interface ReaderWriter {
      * reads data
      * @return
      */
-    public String read();
+    public String read() throws FileException;
 
     /**
      * saves data

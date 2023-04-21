@@ -1,16 +1,15 @@
-package io;
+package common.io;
 
-import command.CommandWrapper;
-import data.Coordinates;
-import data.Difficulty;
-import data.Discipline;
-import data.LabWork;
-import exceptions.*;
+import common.command.CommandWrapper;
+import common.connection.CommandMsg;
+import common.data.Coordinates;
+import common.data.Difficulty;
+import common.data.Discipline;
+import common.data.LabWork;
+import common.exceptions.*;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-import static io.OutputManager.print;
 
 /**
  * basic implementation of InputManager
@@ -168,16 +167,22 @@ public abstract class InputManagerImpl implements InputManager{
         return labWork;
     }
 
-    public CommandWrapper readCommand() throws InvalidInputCharacterException {
+    public CommandMsg readCommand() throws InvalidInputCharacterException {
         String cmd = scannerNextLine();
+        String arg = null;
+        LabWork labWork = null;
         if (cmd.contains(" ")){ //if command has argument
             String commandLine [] = cmd.split(" ",TWICE);
             cmd = commandLine[THE_FIRST_PART];
-            String arg = commandLine[THE_SECOND_PART];
-            return new CommandWrapper(cmd,arg);
-        } else {
-            return new CommandWrapper(cmd);
+            arg = commandLine[THE_SECOND_PART];
         }
+        if(cmd.equals("add") || cmd.equals("add_if_min")|| cmd.equals("add_if_max")||cmd.equals("update")){
+            try{
+                labWork = readLabWork();
+            } catch(InvalidDataException e){
+            }
+        }
+        return new CommandMsg(cmd, arg, labWork);
     }
 
     protected String scannerNextLine() throws InvalidInputCharacterException {

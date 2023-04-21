@@ -1,4 +1,4 @@
-package io;
+package common.io;
 /**
  * Operates with console output
  */

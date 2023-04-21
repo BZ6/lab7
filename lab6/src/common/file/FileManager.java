@@ -1,7 +1,7 @@
-package file;
+package common.file;
 
-import static io.OutputManager.*;
-import exceptions.*;
+import static common.io.OutputManager.*;
+import common.exceptions.*;
 
 import java.io.*;
 
@@ -28,8 +28,7 @@ public class FileManager implements ReaderWriter{
     public FileManager(){
         path = null;
     }
-    public String read()
-    {
+    public String read() throws FileException {
         String text = "";
         try {
             if (path == null) throw new EmptyPathException();
@@ -40,11 +39,8 @@ public class FileManager implements ReaderWriter{
             while (scanner.hasNextLine())
                 text += scanner.nextLine() + "\n";
             scanner.close();
-        }
-        catch(FileException e){
-            printErr(e.getMessage());
         } catch (IOException e) {
-            printErr("cannot access file");
+            throw  new FileException("cannot read file");
         }
         return text;
     }

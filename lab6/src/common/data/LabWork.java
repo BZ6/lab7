@@ -1,14 +1,17 @@
-package data;
+package common.data;
 
-import exceptions.InvalidFieldException;
+import common.exceptions.InvalidFieldException;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 
 /**
  * LabWork class
  */
-public class LabWork implements Collectionable{
+public class LabWork implements Collectionable, Serializable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -51,6 +54,11 @@ public class LabWork implements Collectionable{
         this.discipline = discipline;
     }
 
+    public static class SortingComparator implements Comparator<LabWork> {
+        public int compare(LabWork first, LabWork second) {
+            return first.getName().compareTo(second.getName());
+        }
+    }
 
     /**
      * @return int
@@ -70,6 +78,9 @@ public class LabWork implements Collectionable{
         }
     }
 
+    public void setCreationDate(Date date){
+        creationDate = date;
+    }
 
     /**
      * @return String
@@ -100,6 +111,13 @@ public class LabWork implements Collectionable{
      */
     public Double getAveragePoint(){
         return averagePoint;
+    }
+
+    /**
+     * @return Coordinates
+     */
+    public Coordinates getCoordinates(){
+        return coordinates;
     }
 
     /**

@@ -1,4 +1,4 @@
-package exceptions;
+package common.exceptions;
 /**
  * thrown when collection is empty
  */

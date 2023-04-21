@@ -1,11 +1,11 @@
-package utils;
+package common.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import exceptions.InvalidDateFormatException;
+import common.exceptions.InvalidDateFormatException;
 /**
  * Provides methods to convenient conversion between String and Date
  */
