@@ -49,7 +49,7 @@ public abstract class CommandManager implements Commandable, Closeable {
     }
 
     public Command getCommand(String s){
-        if (! hasCommand(s)) throw new NoSuchCommandException();
+        if (!hasCommand(s)) throw new NoSuchCommandException();
         Command cmd =  commands.get(s);
         return cmd;
     }
@@ -57,29 +57,26 @@ public abstract class CommandManager implements Commandable, Closeable {
         return commands.hasCommand(s);
     }
 
-    public void consoleMode(){
+    public void executeCommand() {
+        CommandMsg commandMsg = inputManager.readCommand();
+        Response answerMsg = runCommand(commandMsg);
+        if (answerMsg.getStatus() == Status.EXIT) close();
+    }
+
+    public void consoleMode() {
         inputManager = new ConsoleInputManager();
         isRunning = true;
-        while(isRunning){
+        while (isRunning) {
             print("enter command (help to get command list): ");
-            CommandMsg commandMsg = inputManager.readCommand();
-            Response answerMsg = runCommand(commandMsg);
-            if(answerMsg.getStatus()== Status.EXIT) {
-                close();
-            }
+            executeCommand();
         }
     }
     public void fileMode(String path) throws FileException {
         currentScriptFileName = path;
         inputManager = new FileInputManager(path);
         isRunning = true;
-        while(isRunning && inputManager.getScanner().hasNextLine()){
-            CommandMsg commandMsg= inputManager.readCommand();
-            Response answerMsg = runCommand(commandMsg);
-            if(answerMsg.getStatus()==Status.EXIT) {
-                close();
-            }
-        }
+        while (isRunning && inputManager.getScanner().hasNextLine())
+            executeCommand();
     }
 
     public Stack<String> getCommandHistory(){
@@ -94,6 +91,7 @@ public abstract class CommandManager implements Commandable, Closeable {
     public boolean isRunning(){
         return isRunning;
     }
+
     public void setRunning(boolean running){
         isRunning = running;
     }

@@ -4,7 +4,7 @@ import static common.io.OutputManager.*;
 import common.exceptions.*;
 
 /**
- * user input wrapper
+ * This class for user input data to answer for question
  * @param <T>
  */
 public class Question<T>{

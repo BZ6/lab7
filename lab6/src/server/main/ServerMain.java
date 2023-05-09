@@ -10,11 +10,11 @@ import static common.io.OutputManager.print;
 /**
  * main class for launching server with arguments
  */
-public class Main {
-    public static void main(String[] args) throws Exception {
-        int port = 0;
+public class ServerMain {
+    public static void main(String[] args) {
+        int port = 5000;
         String strPort = "";
-        String path = "labWork_database";
+        String path = "labWork_database.json";
         try {
             if(args.length >= 2) {
                 path = args[1];
@@ -28,9 +28,7 @@ public class Main {
                 throw new InvalidPortException();
             }
             Server server = new Server(port, path);
-            server.start();
-            server.consoleMode();
-
+            server.run();
         }
         catch (InvalidProgramArgumentsException| ConnectionException e){
             print(e.getMessage());

@@ -19,5 +19,4 @@ public class ClearCommand extends CommandImpl {
         collectionManager.clear();
         return "collection cleared";
     }
-
 }

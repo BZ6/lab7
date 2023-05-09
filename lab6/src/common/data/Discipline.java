@@ -2,10 +2,12 @@ package common.data;
 
 import common.exceptions.InvalidFieldException;
 
+import java.io.Serializable;
+
 /**
  * Discipline class
  */
-public class Discipline implements Validateable {
+public class Discipline implements Validateable, Serializable {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Integer lectureHours; //Поле не может быть null
 

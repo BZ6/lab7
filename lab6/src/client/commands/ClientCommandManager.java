@@ -1,10 +1,10 @@
 package client.commands;
 
+import client.client.Asker;
 import client.client.Client;
 import static common.io.OutputManager.*;
 
 import common.command.core.Command;
-import common.exceptions.*;
 import common.command.*;
 import common.connection.*;
 
@@ -13,11 +13,14 @@ import common.connection.*;
  */
 public class ClientCommandManager extends CommandManager{
     private Client client;
-    public ClientCommandManager(Client c){
-        client = c;
+    private Asker asker;
+    public ClientCommandManager(Client client){
+        this.client = client;
+        asker = new Asker(client);
         addCommand(new ExecuteScriptCommand(this));
         addCommand(new ExitCommand());
         addCommand(new HelpCommand());
+        addCommand(new HistoryCommand(this));
     }
 
     public Client getClient(){
@@ -31,16 +34,8 @@ public class ClientCommandManager extends CommandManager{
             cmd.setArgument(msg);
             res = (AnswerMsg)cmd.run();
         } else {
-            try{
-                client.send(msg);
-                res = (AnswerMsg)client.receive();
-            }
-            catch (ConnectionTimeoutException e){
-                res.info("no attempts left, shutting down").setStatus(Status.EXIT);
-            }
-            catch(InvalidDataException|ConnectionException e){
-                res.error(e.getMessage());
-            }
+            /* if this command is not executed on the client, then try to ask a server about command */
+            res = asker.ask(msg);
         }
         print(res);
         return res;

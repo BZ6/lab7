@@ -54,7 +54,7 @@ public abstract class InputManagerImpl implements InputManager{
         Integer y;
         try{
             y = Integer.parseInt(scannerNextLine());
-            if (y <=- 545) throw new InvalidNumberException();
+            if (y <= -545) throw new InvalidNumberException();
         }
         catch(NumberFormatException e){
             throw new InvalidNumberException();
@@ -176,7 +176,7 @@ public abstract class InputManagerImpl implements InputManager{
             cmd = commandLine[THE_FIRST_PART];
             arg = commandLine[THE_SECOND_PART];
         }
-        if(cmd.equals("add") || cmd.equals("add_if_min")|| cmd.equals("add_if_max")||cmd.equals("update")){
+        if(cmd.equals("add") || cmd.equals("add_if_max") || cmd.equals("update")){
             try{
                 labWork = readLabWork();
             } catch(InvalidDataException e){

@@ -1,6 +1,7 @@
 package client.main;
 
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import client.client.Client;
 import common.exceptions.ConnectionException;
@@ -9,13 +10,17 @@ import common.exceptions.InvalidProgramArgumentsException;
 
 import static common.io.OutputManager.*;
 
-public class Main {
+public class ClientMain {
 
-    public static void main(String[] args) throws Exception {
-        System.setOut(new PrintStream(System.out, true, "UTF-8"));
+    public static void main(String[] args) {
+        try {
+            System.setOut(new PrintStream(System.out, true, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            printErr("Unsupported encoding UTF-8");
+        }
 
-        String addr  = "";
-        int port = 0;
+        String addr  = "localhost";
+        int port = 5000;
         try {
             if (args.length != 2) throw new InvalidProgramArgumentsException("no address passed by arguments");
             addr = args[0];
@@ -25,10 +30,10 @@ public class Main {
                 throw new InvalidPortException();
             }
             Client client = new Client(addr,port);
-            client.start();
+            client.run();
         }
         catch (InvalidProgramArgumentsException| ConnectionException e){
-            print(e.getMessage());
+            printErr(e.getMessage());
         }
     }
 }

@@ -10,7 +10,6 @@ import server.collection.CollectionManager;
 import server.log.Log;
 import server.server.Server;
 
-
 public class ServerCommandManager extends CommandManager {
     private Server server;
     private CollectionManager<LabWork> collectionManager;
@@ -52,6 +51,7 @@ public class ServerCommandManager extends CommandManager {
         }
         switch (res.getStatus()){
             case EXIT:
+                getCommand("save").run();
                 Log.logger.error(res.getMessage());
                 server.close();
                 break;

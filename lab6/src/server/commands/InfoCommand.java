@@ -17,5 +17,4 @@ public class InfoCommand extends CommandImpl {
     public String execute() throws InvalidDataException {
         return collectionManager.getInfo();
     }
-
 }

@@ -19,5 +19,4 @@ public class ShowCommand extends CommandImpl {
         collectionManager.sort();
         return collectionManager.serializeCollection();
     }
-
 }

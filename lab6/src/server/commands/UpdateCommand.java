@@ -14,7 +14,6 @@ public class UpdateCommand extends CommandImpl {
         collectionManager = cm;
     }
 
-
     @Override
     public String execute() throws InvalidDataException{
         if(collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
@@ -26,5 +25,4 @@ public class UpdateCommand extends CommandImpl {
         if (success) return "element #" + Integer.toString(id) + " updated";
         else throw new CommandException("cannot update");
     }
-
 }

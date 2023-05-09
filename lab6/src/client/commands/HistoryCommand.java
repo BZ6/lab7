@@ -1,4 +1,4 @@
-package server.commands;
+package client.commands;
 
 import common.command.core.CommandImpl;
 import common.command.core.CommandType;
@@ -6,9 +6,9 @@ import common.command.core.CommandType;
 import java.util.Stack;
 
 public class HistoryCommand extends CommandImpl {
-    ServerCommandManager commandManager;
+    ClientCommandManager commandManager;
 
-   public HistoryCommand(ServerCommandManager cm) {
+   public HistoryCommand(ClientCommandManager cm) {
        super("history", CommandType.NORMAL);
        commandManager = cm;
    }
@@ -18,7 +18,7 @@ public class HistoryCommand extends CommandImpl {
        Stack<String> commandHistory = commandManager.getCommandHistory();
         StringBuilder text = new StringBuilder();
        if (commandHistory.isEmpty()) {
-           text.append("server history is empty");
+           text.append("history is empty");
        } else
            for (int i = commandHistory.size(); i > 0; i--)
                text.append(commandHistory.get(commandHistory.size() - i) + "\n");

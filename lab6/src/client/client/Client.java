@@ -11,7 +11,6 @@ import java.nio.ByteBuffer;
 import client.commands.ClientCommandManager;
 import common.connection.Request;
 import common.connection.Response;
-import common.connection.SenderReceiver;
 import common.exceptions.*;
 
 import static common.io.OutputManager.printErr;
@@ -19,48 +18,46 @@ import static common.io.OutputManager.printErr;
 /**
  * client class
  */
-public class Client extends Thread implements SenderReceiver {
+public class Client {
     private SocketAddress address;
     private DatagramSocket socket;
+    private final int BUFFER_SIZE = 10240;
     public final int MAX_TIME_OUT = 1000;
     public final int MAX_ATTEMPTS = 3;
 
-    private boolean running;
     private ClientCommandManager commandManager;
 
     /**
      * initialize client
      * @param addr
-     * @param p
+     * @param port
      * @throws ConnectionException
      */
-    private void init(String addr, int p) throws ConnectionException {
-        connect(addr,p);
-        running = true;
+    private void init(String addr, int port) throws ConnectionException {
+        connect(addr,port);
         commandManager = new ClientCommandManager(this);
-        setName("client thread");
     }
 
-    public Client(String addr, int p) throws ConnectionException{
-        init(addr,p);
+    public Client(String addr, int port) throws ConnectionException{
+        init(addr,port);
     }
 
     /**
      * connects client to server
      * @param addr
-     * @param p
+     * @param port
      * @throws ConnectionException
      */
-    public void connect(String addr, int p) throws ConnectionException{
+    public void connect(String addr, int port) throws ConnectionException{
         try{
-            address = new InetSocketAddress(InetAddress.getByName(addr),p);
+            address = new InetSocketAddress(InetAddress.getByName(addr),port);
         }
         catch(UnknownHostException e){
             throw new InvalidAddressException();
         }
         catch(IllegalArgumentException e){
             throw new InvalidPortException();
-        }
+        }   
         try {
             socket = new DatagramSocket();
             socket.setSoTimeout(MAX_TIME_OUT);
@@ -104,7 +101,7 @@ public class Client extends Thread implements SenderReceiver {
         catch (SocketTimeoutException e){
             int attempts = MAX_ATTEMPTS;
             boolean success = false;
-            for(;attempts>0;attempts--) {
+            for(; attempts > 0; attempts--) {
                 printErr("server response timeout exceeded, trying to reconnect. " + Integer.toString(attempts)+ " attempts left");
                 try{
                     socket.receive(receivePacket);
@@ -112,13 +109,12 @@ public class Client extends Thread implements SenderReceiver {
                     break;
                 }
                 catch (IOException error){
-
+                    /* nothing should happen here, because program must try to reconnect */
                 }
             }
 
-            throw new ConnectionTimeoutException();
+            if (!success) throw new ConnectionTimeoutException();
         }
-
         catch(IOException e){
             throw new ConnectionException("something went wrong while receiving response");
         }
@@ -126,7 +122,7 @@ public class Client extends Thread implements SenderReceiver {
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bytes.array()));
             return (Response) objectInputStream.readObject();
-        } catch (ClassNotFoundException|ClassCastException|IOException e) {
+        } catch (ClassNotFoundException | ClassCastException | IOException e) {
             throw new InvalidReceivedDataException();
         }
     }
@@ -134,7 +130,6 @@ public class Client extends Thread implements SenderReceiver {
     /**
      * runs client until interrupt
      */
-    @Override
     public void run(){
         commandManager.consoleMode();
         close();
@@ -144,7 +139,6 @@ public class Client extends Thread implements SenderReceiver {
      * close client
      */
     public void close() {
-        running = false;
         commandManager.close();
         socket.close();
     }

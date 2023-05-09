@@ -2,11 +2,13 @@ package common.data;
 
 import common.exceptions.InvalidNumberException;
 
-public class Coordinates implements Validateable {
+import java.io.Serializable;
+
+public class Coordinates implements Validateable, Serializable {
     private double x;
     private Integer y; //Значение поля должно быть больше -545, Поле не может быть null
     public Coordinates(double x, Integer y) throws InvalidNumberException {
-        if (y == null || y <=- 545 || Double.isInfinite(x) || Double.isNaN(x)) {
+        if (y == null || y <= -545 || Double.isInfinite(x) || Double.isNaN(x)) {
             throw new InvalidNumberException();
         }
         this.x = x;
