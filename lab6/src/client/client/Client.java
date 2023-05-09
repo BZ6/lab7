@@ -73,7 +73,7 @@ public class Client {
      */
     public void send(Request request) throws ConnectionException{
         try{
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(BUFFER_SIZE);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objOutput = new ObjectOutputStream(byteArrayOutputStream);
             objOutput.writeObject(request);
             DatagramPacket requestPacket = new DatagramPacket(byteArrayOutputStream.toByteArray(), byteArrayOutputStream.size(), address);

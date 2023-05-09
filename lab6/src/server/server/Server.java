@@ -108,7 +108,7 @@ public class Server {
     public void send(Response response) throws ConnectionException {
         if (clientAddress == null) throw new InvalidAddressException("no client address found");
         try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(BUFFER_SIZE);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject(response);
             channel.send(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()), clientAddress);
