@@ -9,8 +9,10 @@ import java.net.*;
 import java.nio.ByteBuffer;
 
 import client.commands.ClientCommandManager;
+import common.connection.CommandMsg;
 import common.connection.Request;
 import common.connection.Response;
+import common.connection.Status;
 import common.exceptions.*;
 
 import static common.io.OutputManager.printErr;
@@ -22,7 +24,7 @@ public class Client {
     private SocketAddress address;
     private DatagramSocket socket;
     private final int BUFFER_SIZE = 10240;
-    public final int MAX_TIME_OUT = 1000;
+    public final int MAX_TIME_OUT = 100000;
     public final int MAX_ATTEMPTS = 3;
 
     private ClientCommandManager commandManager;
@@ -121,7 +123,16 @@ public class Client {
 
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bytes.array()));
-            return (Response) objectInputStream.readObject();
+            Response response = (Response) objectInputStream.readObject();
+            if (response.getStatus() == Status.CHECK_ID){
+                try{
+                    send(new CommandMsg(null, null, commandManager.getInputManager().readLabWork()));
+                    socket.receive(receivePacket);
+                    response = (Response) objectInputStream.readObject();
+                } catch (ClassNotFoundException | ClassCastException | IOException e) {
+                }
+            }
+            return response;
         } catch (ClassNotFoundException | ClassCastException | IOException e) {
             throw new InvalidReceivedDataException();
         }

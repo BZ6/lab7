@@ -118,7 +118,7 @@ public class LabWorkCollectionManager implements CollectionManager<LabWork>{
         for (LabWork labWork : collection){
             if (labWork.getId() == id){
                 newLabWork.setId(id);
-                collection.set(currentId, newLabWork);
+                collection.set(currentId - 1, newLabWork);
                 //print("element #"+Integer.toString(id)+" successfully updated");
                 return true;
             }

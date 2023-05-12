@@ -5,6 +5,7 @@ import common.command.core.CommandType;
 import common.exceptions.*;
 import common.data.*;
 import server.collection.CollectionManager;
+import server.exceptions.CheckIdException;
 
 import static common.utils.Parser.*;
 public class UpdateCommand extends CommandImpl {
@@ -16,12 +17,13 @@ public class UpdateCommand extends CommandImpl {
 
     @Override
     public String execute() throws InvalidDataException{
-        if(collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
-        if(!hasStringArg()||!hasLabWorkArg()) throw new MissedCommandArgumentException();
+        if (collectionManager.getCollection().isEmpty()) throw new EmptyCollectionException();
+        if (!hasStringArg()) throw new MissedCommandArgumentException();
         Integer id = parseId(getStringArg());
-        if(!collectionManager.checkId(id)) throw new InvalidCommandArgumentException("no such id");
+        if (!collectionManager.checkId(id)) throw new InvalidCommandArgumentException("no such id");
+        if (!hasLabWorkArg()) throw new CheckIdException();
 
-        boolean success = collectionManager.updateById(id,getLabWorkArg());
+        boolean success = collectionManager.updateById(id, getLabWorkArg());
         if (success) return "element #" + Integer.toString(id) + " updated";
         else throw new CommandException("cannot update");
     }

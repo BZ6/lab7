@@ -137,6 +137,12 @@ public class Server {
                     if (answerMsg.getStatus() == Status.EXIT) {
                         close();
                     }
+                    if (answerMsg.getStatus() == Status.CHECK_ID) {
+                        send(answerMsg);
+                        Request labWorkMsg = receive();
+                        commandMsg.setLabWork(labWorkMsg.getLabWork());
+                        answerMsg = commandManager.runCommand(commandMsg);
+                    }
                 } catch (CommandException | InvalidDataException |ConnectionException e) {
                     answerMsg.error(e.getMessage());
                     Log.logger.error(e.getMessage());

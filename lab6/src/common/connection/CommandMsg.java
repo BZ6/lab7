@@ -37,4 +37,11 @@ public class CommandMsg implements Request{
     public LabWork getLabWork() {
         return (LabWork) commandObjectArgument;
     }
+
+    /**
+     * @param labWork
+     */
+    public void setLabWork(LabWork labWork) {
+        commandObjectArgument = labWork;
+    }
 }

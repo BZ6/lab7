@@ -1,6 +1,5 @@
 package common.io;
 
-import common.command.CommandWrapper;
 import common.connection.CommandMsg;
 import common.data.Coordinates;
 import common.data.Difficulty;
@@ -176,7 +175,7 @@ public abstract class InputManagerImpl implements InputManager{
             cmd = commandLine[THE_FIRST_PART];
             arg = commandLine[THE_SECOND_PART];
         }
-        if(cmd.equals("add") || cmd.equals("add_if_max") || cmd.equals("update")){
+        if(cmd.equals("add") || cmd.equals("add_if_max")){
             try{
                 labWork = readLabWork();
             } catch(InvalidDataException e){

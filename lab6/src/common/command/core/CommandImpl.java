@@ -3,6 +3,7 @@ package common.command.core;
 import common.connection.*;
 import common.data.LabWork;
 import common.exceptions.*;
+import server.exceptions.CheckIdException;
 
 /**
  * basic command implementation
@@ -44,6 +45,9 @@ public abstract class CommandImpl implements Command{
         catch(ExitException e){
             res.info(e.getMessage());
             res.setStatus(Status.EXIT);
+        }
+        catch(CheckIdException e){
+            res.setStatus(Status.CHECK_ID);
         }
         catch(InvalidDataException|CommandException|FileException|ConnectionException e){
             res.error(e.getMessage());
