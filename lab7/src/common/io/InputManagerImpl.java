@@ -196,12 +196,7 @@ public abstract class InputManagerImpl implements InputManager{
             cmd = commandLine[THE_FIRST_PART];
             arg = commandLine[THE_SECOND_PART];
         }
-        if(cmd.equals("add") || cmd.equals("add_if_max")){
-            try{
-                labWork = readLabWork();
-            } catch(InvalidDataException e){
-            }
-        } else if (cmd.equals("login") || cmd.equals("register")) {
+        if (cmd.equals("login") || cmd.equals("register")) {
             try {
                 user = readUser();
             } catch (InvalidDataException ignored) {

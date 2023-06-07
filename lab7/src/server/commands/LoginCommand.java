@@ -18,7 +18,6 @@ public class LoginCommand extends CommandImpl {
 
     @Override
     public Response run() throws AuthException {
-
         User user = getArgument().getUser();
         if (user != null && user.getLogin() != null && user.getPassword() != null) {
             if (userManager.isValid(user)) {
@@ -26,6 +25,5 @@ public class LoginCommand extends CommandImpl {
             }
         }
         throw new AuthException("login or password is incorrect");
-
     }
 }

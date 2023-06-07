@@ -13,6 +13,7 @@ import common.auth.User;
 import common.connection.CommandMsg;
 import common.connection.Request;
 import common.connection.Response;
+import common.data.LabWork;
 import common.exceptions.*;
 
 import static common.io.OutputManager.printErr;
@@ -21,6 +22,10 @@ import static common.io.OutputManager.printErr;
  * client class
  */
 public class Client {
+    private static final int TWICE = 2;
+    private static final int THE_FIRST_PART = 0;
+    private static final int THE_SECOND_PART = 1;
+
     private SocketAddress address;
     private DatagramSocket socket;
     private final int BUFFER_SIZE = 10240;
@@ -133,10 +138,18 @@ public class Client {
             Response response = (Response) objectInputStream.readObject();
             if (response.getStatus() == Response.Status.CHECK_ID){
                 try{
-                    send(new CommandMsg(null, null, commandManager.getInputManager().readLabWork()));
+                    String cmd = commandManager.getCommandHistory().peek();
+                    String arg = null;
+                    LabWork labWork = null;
+                    if (cmd.contains(" ")){ //if command has argument
+                        String commandLine [] = cmd.split(" ",TWICE);
+                        cmd = commandLine[THE_FIRST_PART];
+                        arg = commandLine[THE_SECOND_PART];
+                    }
+                    send(new CommandMsg(cmd, arg, commandManager.getInputManager().readLabWork(), user));
                     socket.receive(receivePacket);
                     response = (Response) objectInputStream.readObject();
-                } catch (ClassNotFoundException | ClassCastException | IOException e) {
+                } catch (ClassNotFoundException e) {
                     throw new InvalidReceivedDataException();
                 }
             }

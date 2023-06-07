@@ -16,8 +16,11 @@ public class Commands {
         commands.put(key, c);
     }
 
-    public Command get(String key){
+    public void pushToHistory(String key) {
         commandHistory.push(key);
+    }
+
+    public Command get(String key){
         return commands.get(key);
     }
 

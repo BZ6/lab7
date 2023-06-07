@@ -22,8 +22,6 @@ public class HelpCommand extends CommandImpl {
     \r
     clear : clear the collection\r
     \r
-    save (file_name - optional) : save the collection to a file\r
-    \r
     load (file_name - optional): load collection from file\r
     \r
     execute_script file_name : read and execute script from specified file.\r
@@ -49,6 +47,14 @@ public class HelpCommand extends CommandImpl {
     \r
     filter_starts_with_name name : output elements, value of field name\r
     which starts with the given substring\r
+    \r
+    login {element} : log in account by user name and password\r
+    \r
+    register {element} : register account by user name and password\r
+    \r
+    logout : log out from account\r
+    \r
+    show_users : print to standard output all users in string representation\r
     """;
     public HelpCommand(){
         super("help", CommandType.NORMAL);

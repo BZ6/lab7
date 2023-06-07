@@ -39,6 +39,7 @@ public class ServerCommandManager extends CommandManager {
 
         addCommand(new LoginCommand(userManager));
         addCommand(new RegisterCommand(userManager));
+        addCommand(new LogoutCommand(userManager));
         addCommand(new ShowUsersCommand(userManager));
     }
 
@@ -91,6 +92,8 @@ public class ServerCommandManager extends CommandManager {
                 break;
             case AUTH_SUCCESS: //check if auth command was invoked by server terminal
                 if (isGeneratedByServer) server.setHostUser(user);
+            case CHECK_ID:
+                if (msg.getLabWork() == null) ;
             default:
                 Log.logger.info(message + res.getMessage());
                 break;

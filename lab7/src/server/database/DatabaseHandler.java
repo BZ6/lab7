@@ -5,8 +5,6 @@ import server.log.Log;
 
 import java.sql.*;
 
-import static common.io.OutputManager.printErr;
-
 public class DatabaseHandler {
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
 

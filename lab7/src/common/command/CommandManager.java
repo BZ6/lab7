@@ -8,6 +8,7 @@ import common.exceptions.*;
 import common.io.ConsoleInputManager;
 import common.io.FileInputManager;
 import common.io.InputManager;
+import server.exceptions.CheckIdException;
 
 import java.io.Closeable;
 import java.util.NoSuchElementException;
@@ -61,6 +62,8 @@ public abstract class CommandManager implements Commandable, Closeable {
             res = (AnswerMsg) cmd.run();
         } catch (ExitException e) {
             res.setStatus(Response.Status.EXIT);
+        } catch(CheckIdException e){
+                res.setStatus(Response.Status.CHECK_ID);
         } catch (CommandException | CollectionException | InvalidDataException | FileException | ConnectionException e) {
             res.error(e.getMessage());
         }
@@ -75,6 +78,11 @@ public abstract class CommandManager implements Commandable, Closeable {
             print("enter command (help to get command list): ");
             try {
                 CommandMsg commandMsg = inputManager.readCommand();
+                if (commandMsg.getCommandName() != null)
+                    if (commandMsg.getStringArg() != null)
+                        commands.pushToHistory(commandMsg.getCommandName() + " " + commandMsg.getStringArg());
+                    else
+                        commands.pushToHistory(commandMsg.getCommandName());
                 answerMsg = runCommand(commandMsg);
             } catch (NoSuchElementException e) {
                 close();

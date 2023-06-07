@@ -16,11 +16,14 @@ public class Asker {
     public AnswerMsg ask(Request req) {
         AnswerMsg res = new AnswerMsg();
         try {
-            if(client.getUser()!=null && req.getUser()==null) req.setUser(client.getUser());
+            if(client.getUser() != null && req.getUser() == null) req.setUser(client.getUser());
             client.send(req);
             res = (AnswerMsg) client.receive();
-            if(res.getStatus()== Response.Status.AUTH_SUCCESS){
+            if(res.getStatus() == Response.Status.AUTH_SUCCESS) {
                 client.setUser(req.getUser());
+            }
+            if(res.getStatus() == Response.Status.LOGOUT) {
+                client.setUser(null);
             }
         } catch (ConnectionTimeoutException e) {
             res.info("no attempts left");

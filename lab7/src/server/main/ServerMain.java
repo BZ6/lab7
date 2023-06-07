@@ -6,11 +6,8 @@ import common.exceptions.InvalidPortException;
 import server.log.Log;
 import server.server.Server;
 
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.Properties;
-
-import static common.io.OutputManager.printErr;
 
 /**
  * main class for launching server with arguments
@@ -25,11 +22,14 @@ public class ServerMain {
         int port = 4445;
         String strPort = "4445";
         String dbHost = "pg";
-        String user = "s367224";
-        String password = "qDGanj9ZWdzjman6";
         String url = "jdbc:postgresql://" + dbHost + ":5432/studs";
-
+        String user = "";
+        String password = "";
         try {
+            Properties userProps = new Properties();
+            userProps.load(new FileInputStream("db.cfg"));
+            user = userProps.getProperty("user");
+            password = userProps.getProperty("password");
             if (args.length == 4) {
                 strPort = args[0];
                 dbHost = args[1];
@@ -52,7 +52,7 @@ public class ServerMain {
 
             server.run();
 
-        } catch (ConnectionException | DatabaseException e) {
+        } catch (ConnectionException | DatabaseException | IOException e) {
             Log.logger.error(e.getMessage());
         }
     }

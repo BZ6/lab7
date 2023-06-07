@@ -17,6 +17,7 @@ public interface Response extends Serializable{
         FINE,
         EXIT,
         CHECK_ID,
-        AUTH_SUCCESS
+        AUTH_SUCCESS,
+        LOGOUT
     }
 }

@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import static common.io.OutputManager.printErr;
-
 /**
  * A manager of user database.
  */

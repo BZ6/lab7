@@ -23,14 +23,52 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static common.io.OutputManager.print;
-import static common.io.OutputManager.printErr;
 
 public class LabWorkDatabaseManager extends LabWorkCollectionManager {
     //language=SQL
     private final static String INSERT_LABWORK_QUERY = "INSERT INTO LABWORKS (name, coordinates_x, coordinates_y," +
-            "creation_date, minimal_point, personal_qualities_minimum, average_point, difficulty, discipline_name, " +
-            "discipline_lecture_hours, user_login, id) " +
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,DEFAULT) RETURNING id; ";
+                    "creation_date, minimal_point, personal_qualities_minimum, average_point, difficulty, discipline_name, " +
+                    "discipline_lecture_hours, user_login, id) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,DEFAULT) RETURNING id; ";
+    //language=SQL
+    private final static String CREATE_LABWORK_QUERY = "CREATE TABLE IF NOT EXISTS LABWORKS (" +
+                    "id SERIAL PRIMARY KEY CHECK ( id > 0 )," +
+                    "name VARCHAR(1237) NOT NULL CHECK (name <> '')," +
+                    "coordinates_x DOUBLE PRECISION," +
+                    "coordinates_y INTEGER NOT NULL CHECK (coordinates_y > -545 )," +
+                    "creation_date TEXT NOT NULL," +
+                    "minimal_point INTEGER NOT NULL CHECK(minimal_point > 0)," +
+                    "personal_qualities_minimum INTEGER NOT NULL CHECK(personal_qualities_minimum > 0)," +
+                    "average_point DOUBLE PRECISION CHECK(average_point > 0)," +
+                    "difficulty TEXT NOT NULL," +
+                    "discipline_name VARCHAR(1237) NOT NULL CHECK (discipline_name <> '')," +
+                    "discipline_lecture_hours INTEGER NOT NULL," +
+                    "user_login TEXT NOT NULL REFERENCES USERS(login));";
+    //language=SQL
+    private final static String SELECT_ID_LABWORK_QUERY = "SELECT nextval('id')";
+    //language=SQL
+    private final static String DELETE_LABWORK_QUERY = "DELETE FROM LABWORKS WHERE id = ?;";
+    //language=SQL
+    private final static String UPDATE_LABWORK_QUERY = "UPDATE LABWORKS SET " +
+                    "name=?," +
+                    "coordinates_x=?," +
+                    "coordinates_y=?," +
+                    "creation_date=?," +
+                    "minimal_point=?," +
+                    "personal_qualities_minimum=?," +
+                    "average_point=?," +
+                    "difficulty=?," +
+                    "discipline_name=?," +
+                    "discipline_lecture_hours=?," +
+                    "user_login=?" +
+                    "WHERE id=?";
+    //language=SQL
+    private final static String SELECT_MAX_NAME_LABWORK_QUERY = "SELECT MAX(name) FROM LABWORKS";
+    //language=SQL
+    private final static String DELETE_USER_LABWORK_QUERY = "DELETE FROM LABWORKS WHERE user_login=? RETURNING id";
+    //language=SQL
+    private final static String SELECT_ALL_LABWORK_QUERY = "SELECT * FROM LABWORKS";
+
     private final DatabaseHandler databaseHandler;
     private final UserManager userManager;
 
@@ -42,24 +80,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
     }
 
     private void create() throws DatabaseException {
-        //language=SQL
-        String create =
-                "CREATE TABLE IF NOT EXISTS LABWORKS (" +
-                        "id SERIAL PRIMARY KEY CHECK ( id > 0 )," +
-                        "name VARCHAR(1237) NOT NULL CHECK (name <> '')," +
-                        "coordinates_x DOUBLE PRECISION," +
-                        "coordinates_y INTEGER NOT NULL CHECK (coordinates_y > -545 )," +
-                        "creation_date TEXT NOT NULL," +
-                        "minimal_point INTEGER NOT NULL CHECK(minimal_point > 0)," +
-                        "personal_qualities_minimum INTEGER NOT NULL CHECK(personal_qualities_minimum > 0)," +
-                        "average_point DOUBLE PRECISION CHECK(average_point > 0)," +
-                        "difficulty TEXT NOT NULL," +
-                        "discipline_name VARCHAR(1237) NOT NULL CHECK (discipline_name <> '')," +
-                        "discipline_lecture_hours INTEGER NOT NULL," +
-                        "user_login TEXT NOT NULL REFERENCES USERS(login)" +
-                        ");";
-
-        try (PreparedStatement createStatement = databaseHandler.getPreparedStatement(create)) {
+        try (PreparedStatement createStatement = databaseHandler.getPreparedStatement(CREATE_LABWORK_QUERY)) {
             createStatement.execute();
         } catch (SQLException e) {
             print(e.getMessage());
@@ -69,7 +90,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
 
     @Override
     public Integer generateNextId() {
-        try (PreparedStatement statement = databaseHandler.getPreparedStatement("SELECT nextval('id')")) {
+        try (PreparedStatement statement = databaseHandler.getPreparedStatement(SELECT_ID_LABWORK_QUERY)) {
             ResultSet r = statement.executeQuery();
             r.next();
             return r.getInt(1);
@@ -121,7 +142,6 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
 
     @Override
     public void add(LabWork labWork) {
-
         databaseHandler.setCommitMode();
         databaseHandler.setSavepoint();
         try (PreparedStatement statement = databaseHandler.getPreparedStatement(INSERT_LABWORK_QUERY, true)) {
@@ -144,8 +164,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
 
     @Override
     public boolean removeById(Integer id) {
-        //language=SQL
-        String query = "DELETE FROM LABWORKS WHERE id = ?;";
+        String query = DELETE_LABWORK_QUERY;
         try (PreparedStatement statement = databaseHandler.getPreparedStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -160,20 +179,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
     public boolean updateById(Integer id, LabWork labWork) {
         databaseHandler.setCommitMode();
         databaseHandler.setSavepoint();
-        //language=SQL
-        String sql = "UPDATE LABWORKS SET " +
-                "name=?," +
-                "coordinates_x=?," +
-                "coordinates_y=?," +
-                "creation_date=?," +
-                "minimal_point=?," +
-                "personal_qualities_minimum=?," +
-                "average_point=?," +
-                "difficulty=?," +
-                "discipline_name=?," +
-                "discipline_lecture_hours=?," +
-                "user_login=?" +
-                "WHERE id=?";
+        String sql = UPDATE_LABWORK_QUERY;
         try (PreparedStatement statement = databaseHandler.getPreparedStatement(sql)) {
             setLabWork(statement, labWork);
             statement.setInt(12, id);
@@ -190,8 +196,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
 
     @Override
     public boolean addIfMax(LabWork labWork) {
-        //language=SQL
-        String getMaxQuery = "SELECT MAX(name) FROM LABWORKS";
+        String getMaxQuery = SELECT_MAX_NAME_LABWORK_QUERY;
 
         if (getCollection().isEmpty()) {
             add(labWork);
@@ -228,7 +233,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
         databaseHandler.setCommitMode();
         databaseHandler.setSavepoint();
         Set<Integer> ids = new HashSet<>();
-        try (PreparedStatement statement = databaseHandler.getPreparedStatement("DELETE FROM LABWORKS WHERE user_login=? RETURNING id")) {
+        try (PreparedStatement statement = databaseHandler.getPreparedStatement(DELETE_USER_LABWORK_QUERY)) {
             statement.setString(1, user.getLogin());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -249,8 +254,7 @@ public class LabWorkDatabaseManager extends LabWorkCollectionManager {
     public boolean deserializeCollection(String ignored) {
         boolean isHappened = true;
         if (!getCollection().isEmpty()) super.clear();
-        //language=SQL
-        String query = "SELECT * FROM LABWORKS";
+        String query = SELECT_ALL_LABWORK_QUERY;
         try (PreparedStatement selectAllStatement = databaseHandler.getPreparedStatement(query)) {
             ResultSet resultSet = selectAllStatement.executeQuery();
             int damagedElements = 0;
